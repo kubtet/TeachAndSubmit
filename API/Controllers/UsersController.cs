@@ -10,13 +10,17 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<IReadOnlyList<User>>> GetUsers()
         {
-            return await context.Users.ToListAsync();
+            return await context.Users
+                .Include(u => u.Role)
+                .ToListAsync();
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUsers(int id)
         {
-            return await context.Users.FindAsync(id);
+            return await context.Users
+                .Include(u => u.Role)
+                .FirstOrDefaultAsync(u => u.Id == id);
         }
     }
 }

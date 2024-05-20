@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
+import { UserService } from './services/user.service';
+import { User } from './models/user';
 
 @Component({
   selector: 'app-root',
@@ -8,14 +10,12 @@ import { firstValueFrom } from 'rxjs';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  protected users: User[] = [];
   title = 'Teach&Submit';
 
-  constructor(private http: HttpClient) {}
+  constructor(private userService: UserService) {}
 
   async ngOnInit() {
-    const users = await firstValueFrom(
-      this.http.get('https://localhost:5001/api/users')
-    );
-    console.log(users);
+    this.users = await this.userService.GetUsers();
   }
 }

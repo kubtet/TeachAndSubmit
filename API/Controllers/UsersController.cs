@@ -5,26 +5,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class UsersController : ControllerBase
+    public class UsersController(Context context) : BaseController
     {
-        private readonly Context _context;
-        public UsersController(Context context)
-        {
-            _context = context;
-        }
-
         [HttpGet]
         public async Task<ActionResult<IReadOnlyList<User>>> GetUsers()
         {
-            return await _context.Users.ToListAsync();
+            return await context.Users.ToListAsync();
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUsers(int id)
         {
-            return await _context.Users.FindAsync(id);
+            return await context.Users.FindAsync(id);
         }
     }
 }

@@ -1,0 +1,112 @@
+[
+    {
+        "Id": 1,
+        "Name": "Alice",
+        "Surname": "Johnson",
+        "Email": "alice.johnson@example.com",
+        "Password": "password123",
+        "PasswordHash": "hashedpassword1",
+        "PasswordSalt": "salt1",
+        "DateOfBirth": "1990-01-01T00:00:00",
+        "RoleId": 1
+    },
+    {
+        "Id": 2,
+        "Name": "Bob",
+        "Surname": "Smith",
+        "Email": "bob.smith@example.com",
+        "Password": "password123",
+        "PasswordHash": "hashedpassword2",
+        "PasswordSalt": "salt2",
+        "DateOfBirth": "1985-02-15T00:00:00",
+        "RoleId": 2
+    },
+    {
+        "Id": 3,
+        "Name": "Charlie",
+        "Surname": "Brown",
+        "Email": "charlie.brown@example.com",
+        "Password": "password123",
+        "PasswordHash": "hashedpassword3",
+        "PasswordSalt": "salt3",
+        "DateOfBirth": "1995-03-30T00:00:00",
+        "RoleId": 3
+    },
+    {
+        "Id": 4,
+        "Name": "David",
+        "Surname": "Williams",
+        "Email": "david.williams@example.com",
+        "Password": "password123",
+        "PasswordHash": "hashedpassword4",
+        "PasswordSalt": "salt4",
+        "DateOfBirth": "1980-04-25T00:00:00",
+        "RoleId": 1
+    },
+    {
+        "Id": 5,
+        "Name": "Eve",
+        "Surname": "Davis",
+        "Email": "eve.davis@example.com",
+        "Password": "password123",
+        "PasswordHash": "hashedpassword5",
+        "PasswordSalt": "salt5",
+        "DateOfBirth": "1992-05-05T00:00:00",
+        "RoleId": 2
+    },
+    {
+        "Id": 6,
+        "Name": "Frank",
+        "Surname": "Miller",
+        "Email": "frank.miller@example.com",
+        "Password": "password123",
+        "PasswordHash": "hashedpassword6",
+        "PasswordSalt": "salt6",
+        "DateOfBirth": "1983-06-15T00:00:00",
+        "RoleId": 3
+    },
+    {
+        "Id": 7,
+        "Name": "Grace",
+        "Surname": "Wilson",
+        "Email": "grace.wilson@example.com",
+        "Password": "password123",
+        "PasswordHash": "hashedpassword7",
+        "PasswordSalt": "salt7",
+        "DateOfBirth": "1997-07-20T00:00:00",
+        "RoleId": 1
+    },
+    {
+        "Id": 8,
+        "Name": "Hank",
+        "Surname": "Moore",
+        "Email": "hank.moore@example.com",
+        "Password": "password123",
+        "PasswordHash": "hashedpassword8",
+        "PasswordSalt": "salt8",
+        "DateOfBirth": "1988-08-10T00:00:00",
+        "RoleId": 2
+    },
+    {
+        "Id": 9,
+        "Name": "Ivy",
+        "Surname": "Taylor",
+        "Email": "ivy.taylor@example.com",
+        "Password": "password123",
+        "PasswordHash": "hashedpassword9",
+        "PasswordSalt": "salt9",
+        "DateOfBirth": "1991-09-09T00:00:00",
+        "RoleId": 3
+    },
+    {
+        "Id": 10,
+        "Name": "Jack",
+        "Surname": "Anderson",
+        "Email": "jack.anderson@example.com",
+        "Password": "password123",
+        "PasswordHash": "hashedpassword10",
+        "PasswordSalt": "salt10",
+        "DateOfBirth": "1989-10-30T00:00:00",
+        "RoleId": 1
+    }
+]

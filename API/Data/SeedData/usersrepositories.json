@@ -1,0 +1,42 @@
+[
+    {
+        "UserId": 1,
+        "RepositoryId": 1
+    },
+    {
+        "UserId": 2,
+        "RepositoryId": 1
+    },
+    {
+        "UserId": 3,
+        "RepositoryId": 2
+    },
+    {
+        "UserId": 4,
+        "RepositoryId": 2
+    },
+    {
+        "UserId": 5,
+        "RepositoryId": 3
+    },
+    {
+        "UserId": 6,
+        "RepositoryId": 3
+    },
+    {
+        "UserId": 7,
+        "RepositoryId": 1
+    },
+    {
+        "UserId": 8,
+        "RepositoryId": 2
+    },
+    {
+        "UserId": 9,
+        "RepositoryId": 3
+    },
+    {
+        "UserId": 10,
+        "RepositoryId": 3
+    }
+]

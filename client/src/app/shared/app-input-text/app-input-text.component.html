@@ -1,0 +1,18 @@
+<div class="mb-3">
+  <label>{{ label }}</label>
+  <div class="input-wrapper">
+    <input
+      pInputText
+      [type]="getInputType()"
+      [ngModel]="value"
+      (ngModelChange)="onValueChange($event)"
+    />
+    <button
+      *ngIf="isPassword"
+      type="button"
+      (click)="togglePasswordVisibility()"
+    >
+      <i class="pi" [ngClass]="showPassword ? 'pi-eye-slash' : 'pi-eye'"></i>
+    </button>
+  </div>
+</div>

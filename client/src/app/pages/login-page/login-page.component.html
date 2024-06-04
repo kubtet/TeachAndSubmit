@@ -1,0 +1,18 @@
+<div class="grid">
+  <div class="card col-4 align-items-center">
+    <i class="pi pi-graduation-cap mb-5"></i>
+    <div class="container justify-content-center">
+      <app-input-text label="Email Address" [(value)]="email"></app-input-text>
+      <app-input-text
+        label="Password"
+        [(value)]="password"
+        [isPassword]="true"
+      ></app-input-text>
+      <app-button label="Login" (onClick)="login()"></app-button>
+    </div>
+    <div class="container mt-3">
+      <p>Don't you have an account yet?</p>
+      <app-button label="Register"></app-button>
+    </div>
+  </div>
+</div>

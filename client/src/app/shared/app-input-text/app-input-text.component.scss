@@ -1,0 +1,21 @@
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.input-wrapper input {
+  flex: 1;
+}
+
+.input-wrapper button {
+  background: none;
+  border: none;
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+}
+
+.input-wrapper button i {
+  font-size: 1.2em;
+}

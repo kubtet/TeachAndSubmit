@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './services/user.service';
 import { User } from './models/user';
+import { AccountService } from './services/account.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ export class AppComponent implements OnInit {
   protected users: User[] = [];
   title = 'Teach&Submit';
 
-  constructor(private userService: UserService) {}
+  constructor(protected accountService: AccountService, private userService: UserService) {}
 
   async ngOnInit() {
     this.users = await this.userService.GetUsers();

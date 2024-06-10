@@ -14,6 +14,7 @@ import { AppInputTextComponent } from './shared/app-input-text/app-input-text.co
 import { FormsModule } from '@angular/forms';
 import { AppButtonComponent } from './shared/app-button/app-button.component';
 import { ButtonModule } from 'primeng/button';
+import { MenuModule } from 'primeng/menu';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ButtonModule } from 'primeng/button';
     FormsModule,
     HttpClientModule,
     InputTextModule,
+    MenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

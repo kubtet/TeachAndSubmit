@@ -5,7 +5,7 @@
     >
 
     <ul class="navbar-nav me-auto mb-2 mb-md-0">
-      <ng-container>
+      <ng-container *ngIf="accountService.currentUser$ | async">
         <li class="nav-item"></li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/lists" routerLinkActive="active"
@@ -25,17 +25,17 @@
       </ng-container>
     </ul>
 
-    <div class="dropdown" dropdown>
-      <img src="{{ './assets/user.png' }}" alt="user photo" />
-      <a
-        class="dropdown-toggle text-light text-decoration-none ms-2"
-        dropdownToggle
-        >Welcome</a
-      >
-      <div class="dropdown-menu mt-3">
-        <a class="dropdown-item">Edit profile</a>
-        <a class="dropdown-item">Logout</a>
+    <ng-container *ngIf="accountService.currentUser$ | async">
+      <div class="me-2">
+        <img src="{{ './assets/user.png' }}" alt="user photo" />
       </div>
-    </div>
+      <app-button
+        label="Welcome"
+        icon="pi pi-angle-down"
+        [iconPos]="iconPosition"
+        (click)="menu.toggle($event)"
+      ></app-button>
+      <p-menu #menu [model]="items" [popup]="true"></p-menu>
+    </ng-container>
   </div>
 </nav>

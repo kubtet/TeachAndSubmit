@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ButtonIconPosition } from '../models/ButtonIconPosition';
 
 @Component({
   selector: 'app-button',
@@ -6,6 +7,12 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./app-button.component.scss'],
 })
 export class AppButtonComponent {
+  /** Name of the icon. */
+  @Input() icon: string = '';
+
+  /** Position of the icon, valid values are "left" and "right". */
+  @Input() iconPos: ButtonIconPosition = ButtonIconPosition.LEFT;
+
   /** Label of the button */
   @Input() label: string = '';
 

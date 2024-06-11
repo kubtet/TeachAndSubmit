@@ -13,7 +13,13 @@
 
       <div class="row">
         <div class="col-6">
-          <app-dropdown class="col-12" label="Role" placeholder="Select role"></app-dropdown>
+          <app-dropdown
+            label="Role"
+            [options]="roles"
+            optionLabel="name"
+            optionValue="id"
+            placeholder="Select role"
+          ></app-dropdown>
         </div>
         <div class="col-6">
           <app-input-text label="Email Address"></app-input-text>

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { Login } from 'src/app/models/login';
 import { AccountService } from 'src/app/services/account.service';
@@ -9,10 +10,13 @@ import { AccountService } from 'src/app/services/account.service';
   styleUrls: ['./login-page.component.scss'],
 })
 export class LoginPageComponent {
+  @Output() registerMode: EventEmitter<boolean> = new EventEmitter<boolean>(
+    false
+  );
   protected email: string = '';
   protected password: string = '';
 
-  constructor(private accountService: AccountService) {}
+  constructor(private accountService: AccountService, private router: Router) {}
 
   public async login() {
     const input: Login = {
@@ -21,5 +25,9 @@ export class LoginPageComponent {
     };
 
     await firstValueFrom(this.accountService.login(input));
+  }
+
+  public register() {
+    this.registerMode.emit(true);
   }
 }

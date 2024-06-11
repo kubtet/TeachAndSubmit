@@ -9,16 +9,11 @@ import { AccountService } from './services/account.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  protected users: User[] = [];
-  title = 'Teach&Submit';
+  protected title: string = 'Teach&Submit';
 
-  constructor(
-    protected accountService: AccountService,
-    private userService: UserService
-  ) {}
+  constructor(protected accountService: AccountService) {}
 
   public async ngOnInit() {
-    this.users = await this.userService.GetUsers();
     this.setCurrentUser();
   }
 

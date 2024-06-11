@@ -21,6 +21,7 @@ namespace API.Controllers
 
             var user = new User
             {
+                DateOfBirth = registerDto.DateOfBirth,
                 Email = registerDto.Email.ToLower(),
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
                 PasswordSalt = hmac.Key,
@@ -35,6 +36,7 @@ namespace API.Controllers
 
             return new UserDto
             {
+                DateOfBirth = user.DateOfBirth,
                 Email = user.Email,
                 Name = user.Name,
                 Surname = user.Surname,

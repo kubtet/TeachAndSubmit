@@ -4,6 +4,8 @@ namespace API.DTOs
 {
     public class RegisterDto
     {
+        public DateTime DateOfBirth { get; set; }
+
         [EmailAddress]
         [Required]
         public string Email { get; set; }

@@ -9,6 +9,7 @@ export class RegisterPageComponent {
   @Output() registerMode: EventEmitter<boolean> = new EventEmitter<boolean>(
     true
   );
+  protected dateOfBirth: Date | undefined;
 
   login() {
     this.registerMode.emit(false);

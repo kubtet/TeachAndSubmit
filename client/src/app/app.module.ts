@@ -16,6 +16,8 @@ import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { HomeComponent } from './home/home.component';
+import { AppCalendarComponent } from './shared/app-calendar/app-calendar.component';
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
   declarations: [
@@ -27,12 +29,14 @@ import { HomeComponent } from './home/home.component';
     AppButtonComponent,
     RegisterPageComponent,
     HomeComponent,
+    AppCalendarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ButtonModule,
+    CalendarModule,
     DropdownModule,
     FormsModule,
     HttpClientModule,

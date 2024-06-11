@@ -16,7 +16,10 @@
           <app-input-text label="Email Address"></app-input-text>
         </div>
         <div class="col-6">
-          <app-input-text label="Date of birth"></app-input-text>
+          <app-calendar
+            [date]="dateOfBirth"
+            label="Date of birth"
+          ></app-calendar>
         </div>
       </div>
 

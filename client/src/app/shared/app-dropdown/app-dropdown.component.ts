@@ -15,6 +15,9 @@ export class AppDropdownComponent {
   /** Name of the label field of an option. */
   @Input() optionLabel: string = '';
 
+  /** Name of the value field of an option. */
+  @Input() optionValue: string = '';
+
   /** Placeholder text to show when filter input is empty. */
   @Input() placeholder: string = '';
 }

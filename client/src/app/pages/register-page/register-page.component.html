@@ -1,19 +1,28 @@
 <div class="grid">
   <div class="card col-6 align-items-center">
+    <app-loading [isLoading]="loading | async" [isOverlay]="true"></app-loading>
     <i class="pi pi-graduation-cap mb-5"></i>
+    <form #registrationFrom="ngForm" (ngSubmit)="register()"></form>
     <div class="container justify-content-center">
       <div class="row">
         <div class="col-6">
-          <app-input-text label="Name"></app-input-text>
+          <app-input-text
+            label="Name"
+            [control]="formGroup?.controls.name"
+          ></app-input-text>
         </div>
         <div class="col-6">
-          <app-input-text label="Surname"></app-input-text>
+          <app-input-text
+            label="Surname"
+            [control]="formGroup?.controls.surname"
+          ></app-input-text>
         </div>
       </div>
 
       <div class="row">
         <div class="col-6">
           <app-dropdown
+            [control]="formGroup?.controls.roleId"
             label="Role"
             [options]="roles"
             optionLabel="name"
@@ -21,18 +30,18 @@
             placeholder="Select role"
           ></app-dropdown>
         </div>
-        <div class="col-6">
-          <app-input-text label="Email Address"></app-input-text>
-        </div>
       </div>
 
       <div class="row">
         <div class="col-6">
-          <app-input-text label="Email Address"></app-input-text>
+          <app-input-text
+            label="Email Address"
+            [control]="formGroup?.controls.email"
+          ></app-input-text>
         </div>
         <div class="col-6">
           <app-calendar
-            [date]="dateOfBirth"
+            [control]="formGroup?.controls.dateOfBirth"
             label="Date of birth"
           ></app-calendar>
         </div>
@@ -40,21 +49,34 @@
 
       <div class="row">
         <div class="col-6">
-          <app-input-text label="Password" [isPassword]="true"></app-input-text>
+          <app-input-text
+            label="Password"
+            [isPassword]="true"
+            [control]="formGroup?.controls.password"
+          ></app-input-text>
         </div>
         <div class="col-6">
           <app-input-text
             label="Confirm password"
             [isPassword]="true"
+            [control]="formGroup?.controls.confirmedPassword"
           ></app-input-text>
         </div>
       </div>
 
-      <app-button label="Register"></app-button>
+      <div class="col-12 align-items-center d-flex justify-content-center">
+        <app-button
+          class="col-4"
+          label="Register"
+          (click)="register()"
+        ></app-button>
+      </div>
     </div>
     <div class="container mt-3">
       <p>Do you already have an account?</p>
-      <app-button label="Log in" (click)="login()"></app-button>
+      <div class="d-flex">
+        <app-button class="col-3" label="Log in" (click)="login()"></app-button>
+      </div>
     </div>
   </div>
 </div>

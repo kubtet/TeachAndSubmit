@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-calendar',
@@ -6,6 +7,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./app-calendar.component.scss'],
 })
 export class AppCalendarComponent {
+  /** FormControl for the calendar */
+  @Input() control?: FormControl;
+
   /** Value of the component */
   private _date?: Date;
 
@@ -23,4 +27,12 @@ export class AppCalendarComponent {
   @Input() label: string = '';
 
   @Output() dateChange = new EventEmitter<Date>();
+
+  /** Method to handle calendar value changes */
+  onValueChange(event: any) {
+    this.date = event;
+    if (this.control) {
+      this.control.setValue(event);
+    }
+  }
 }

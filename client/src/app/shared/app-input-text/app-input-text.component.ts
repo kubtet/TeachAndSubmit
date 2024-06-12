@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-input-text',
@@ -6,6 +7,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./app-input-text.component.scss'],
 })
 export class AppInputTextComponent {
+  /** FormControl for the input */
+  @Input() control?: FormControl;
+
   /** Determines if the input is of type password */
   @Input() isPassword: boolean = false;
 
@@ -13,12 +17,12 @@ export class AppInputTextComponent {
   @Input() label: string = '';
 
   /** Value of the input */
-  private _value: string = '';
+  private _value: string | undefined = '';
   @Input()
-  get value(): string {
+  get value(): string | undefined {
     return this._value;
   }
-  set value(val: string) {
+  set value(val: string | undefined) {
     this._value = val;
     this.valueChange.emit(this._value);
   }
@@ -32,6 +36,9 @@ export class AppInputTextComponent {
   /** Method to handle input changes */
   onValueChange(event: any) {
     this.value = event;
+    if (this.control) {
+      this.control.setValue(event);
+    }
   }
 
   /** Toggle password visibility */

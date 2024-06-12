@@ -1,8 +1,10 @@
-<div>
+<div class="mt-3">
   <p-button
-    [label]="label"
+    [disabled]="disabled"
     [icon]="icon"
     [iconPos]="iconPos"
+    [label]="label"
+    [style]="{ width: '100%' }"
     (onClick)="handleClick($event)"
   ></p-button>
 </div>

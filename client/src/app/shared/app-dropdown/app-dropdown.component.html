@@ -1,10 +1,22 @@
 <div class="mb-3">
-  <label class="form-label">{{ label }}</label>
+  <label>{{ label }}</label>
   <p-dropdown
+    *ngIf="!control; else template"
+    [ngModel]="value"
     [options]="options"
     [optionLabel]="optionLabel"
     [optionValue]="optionValue"
     [placeholder]="placeholder"
-    [style]="{'width':'100%'}"
+    [style]="{ width: '100%' }"
   ></p-dropdown>
+  <ng-template #template>
+    <p-dropdown
+      [formControl]="control"
+      [options]="options"
+      [optionLabel]="optionLabel"
+      [optionValue]="optionValue"
+      [placeholder]="placeholder"
+      [style]="{ width: '100%' }"
+    ></p-dropdown>
+  </ng-template>
 </div>

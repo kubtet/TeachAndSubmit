@@ -7,6 +7,9 @@ import { ButtonIconPosition } from '../models/ButtonIconPosition';
   styleUrls: ['./app-button.component.scss'],
 })
 export class AppButtonComponent {
+  /** When present, it specifies that the component should be disabled. */
+  @Input() disabled: boolean = false;
+
   /** Name of the icon. */
   @Input() icon: string = '';
 

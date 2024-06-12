@@ -1,6 +1,6 @@
 <div class="mb-3">
   <label>{{ label }}</label>
-  <div class="input-wrapper">
+  <div class="input-wrapper" *ngIf="!control; else template">
     <input
       pInputText
       [type]="getInputType()"
@@ -15,4 +15,20 @@
       <i class="pi" [ngClass]="showPassword ? 'pi-eye-slash' : 'pi-eye'"></i>
     </button>
   </div>
+  <ng-template #template
+    ><div class="input-wrapper">
+      <input
+        pInputText
+        [type]="getInputType()"
+        [formControl]="control"
+        (ngModelChange)="onValueChange($event)"
+      />
+      <button
+        *ngIf="isPassword"
+        type="button"
+        (click)="togglePasswordVisibility()"
+      >
+        <i class="pi" [ngClass]="showPassword ? 'pi-eye-slash' : 'pi-eye'"></i>
+      </button></div
+  ></ng-template>
 </div>

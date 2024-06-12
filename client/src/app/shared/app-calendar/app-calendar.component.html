@@ -1,4 +1,16 @@
 <div class="mb-3">
   <label>{{ label }}</label>
-  <p-calendar [(ngModel)]="date" dateFormat="dd.mm.yy" [showIcon]="true"></p-calendar>
+  <p-calendar
+    *ngIf="!control; else template"
+    [(ngModel)]="date"
+    dateFormat="dd.mm.yy"
+    [showIcon]="true"
+  ></p-calendar>
+  <ng-template #template>
+    <p-calendar
+      [formControl]="control"
+      dateFormat="dd.mm.yy"
+      [showIcon]="true"
+    ></p-calendar>
+  </ng-template>
 </div>

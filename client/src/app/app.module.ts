@@ -18,6 +18,9 @@ import { RegisterPageComponent } from './pages/register-page/register-page.compo
 import { HomeComponent } from './home/home.component';
 import { AppCalendarComponent } from './shared/app-calendar/app-calendar.component';
 import { CalendarModule } from 'primeng/calendar';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { AppLoadingComponent } from './shared/app-loading/app-loading.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,7 @@ import { CalendarModule } from 'primeng/calendar';
     RegisterPageComponent,
     HomeComponent,
     AppCalendarComponent,
+    AppLoadingComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +46,8 @@ import { CalendarModule } from 'primeng/calendar';
     HttpClientModule,
     InputTextModule,
     MenuModule,
+    ProgressSpinnerModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -5,6 +5,7 @@ import { User } from '../models/user';
 import { HttpClient } from '@angular/common/http';
 import { Location } from '@angular/common';
 import { Login } from '../models/login';
+import { Register } from '../models/register';
 
 @Injectable({
   providedIn: 'root',
@@ -29,7 +30,7 @@ export class AccountService {
     );
   }
 
-  register(model: any) {
+  register(model: Register) {
     return this.http.post<User>(this.baseUrl + 'account/register', model).pipe(
       map((user) => {
         if (user) {

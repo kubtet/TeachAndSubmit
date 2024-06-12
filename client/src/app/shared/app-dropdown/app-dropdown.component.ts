@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-dropdown',
@@ -6,6 +7,9 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./app-dropdown.component.scss'],
 })
 export class AppDropdownComponent {
+  /** FormControl for the dropdown */
+  @Input() control?: FormControl;
+
   /** Label of the component. */
   @Input() label: string = '';
 
@@ -20,4 +24,26 @@ export class AppDropdownComponent {
 
   /** Placeholder text to show when filter input is empty. */
   @Input() placeholder: string = '';
+
+  /** Value picked from dropdown */
+  private _value: number | undefined;
+  @Input()
+  get value(): number | undefined {
+    return this._value;
+  }
+  set value(val: number | undefined) {
+    this._value = val;
+    this.valueChange.emit(this._value);
+  }
+
+  /** Event emitter for value change */
+  @Output() valueChange = new EventEmitter<number>();
+
+  /** Method to handle dropdown value changes */
+  onValueChange(event: any) {
+    this.value = event;
+    if (this.control) {
+      this.control.setValue(event);
+    }
+  }
 }

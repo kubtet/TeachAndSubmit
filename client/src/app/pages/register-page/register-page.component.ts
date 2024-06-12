@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, firstValueFrom } from 'rxjs';
+import { Register } from 'src/app/models/register';
 import { Role } from 'src/app/models/role';
+import { AccountService } from 'src/app/services/account.service';
 import { RolesService } from 'src/app/services/roles.service';
 
 @Component({
@@ -20,6 +22,7 @@ export class RegisterPageComponent implements OnInit {
 
   protected formGroup?: FormGroup;
   constructor(
+    private accountService: AccountService,
     private messageService: MessageService,
     private rolesService: RolesService,
     private router: Router
@@ -64,6 +67,19 @@ export class RegisterPageComponent implements OnInit {
         summary: 'Error',
         detail: 'Passwords do not match!',
       });
+    } else {
+      this.loading.next(true);
+      const input: Register = new Register();
+      input.dateOfBirth = control['dateOfBirth'].value;
+      input.email = control['email'].value;
+      input.name = control['name'].value;
+      input.password = control['password'].value;
+      input.roleId = control['roleId'].value;
+      input.surname = control['surname'].value;
+
+      await firstValueFrom(this.accountService.register(input));
+      this.loading.next(false);
+      this.router.navigateByUrl('');
     }
   }
 

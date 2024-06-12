@@ -1,17 +1,10 @@
-<ng-container *ngIf="accountService.currentUser$ | async; else loginOrRegister">
-  <h1>Welcome to {{ title }}</h1>
+<ng-container *ngIf="accountService.currentUser$ | async as user; else login">
+  <h1>Welcome to {{ title }} {{ user.name }}!</h1>
   <ul *ngFor="let user of users">
     <li>{{ user.surname }}</li>
   </ul>
 </ng-container>
 
-<ng-template #loginOrRegister>
-  <login-page
-    (registerMode)="modeToggler($event)"
-    *ngIf="!registerMode"
-  ></login-page>
-  <register-page
-    (registerMode)="modeToggler($event)"
-    *ngIf="registerMode"
-  ></register-page>
+<ng-template #login>
+  <login-page></login-page>
 </ng-template>

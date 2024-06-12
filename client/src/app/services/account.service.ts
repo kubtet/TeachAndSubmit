@@ -3,7 +3,6 @@ import { BehaviorSubject, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
 import { HttpClient } from '@angular/common/http';
-import { Location } from '@angular/common';
 import { Login } from '../models/login';
 import { Register } from '../models/register';
 
@@ -15,7 +14,7 @@ export class AccountService {
   private currentUserSource = new BehaviorSubject<User | undefined>(undefined);
   currentUser$ = this.currentUserSource.asObservable();
 
-  constructor(private http: HttpClient, private location: Location) {}
+  constructor(private http: HttpClient) {}
 
   login(model: Login) {
     return this.http.post<User>(this.baseUrl + 'account/login', model).pipe(
@@ -23,7 +22,6 @@ export class AccountService {
         const user = response;
         if (user) {
           localStorage.setItem('user', JSON.stringify(user));
-          console.log(user);
           this.currentUserSource.next(user);
         }
       })
@@ -49,7 +47,5 @@ export class AccountService {
   logout() {
     localStorage.removeItem('user');
     this.currentUserSource.next(undefined);
-    this.location.go('/');
-    location.reload();
   }
 }

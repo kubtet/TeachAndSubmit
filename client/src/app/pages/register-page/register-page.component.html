@@ -69,7 +69,7 @@
         <app-button
           class="col-4"
           label="Register"
-          [disabled]="false"
+          [disabled]="!formGroup?.valid"
           (click)="register()"
         ></app-button>
       </div>

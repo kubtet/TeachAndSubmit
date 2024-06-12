@@ -9,7 +9,6 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  protected registerMode: boolean = false;
   protected users: User[] = [];
   protected title: string = 'Teach&Submit';
 
@@ -20,9 +19,5 @@ export class HomeComponent implements OnInit {
 
   public async ngOnInit() {
     this.users = await this.userService.GetUsers();
-  }
-
-  public modeToggler(event: boolean) {
-    this.registerMode = event;
   }
 }

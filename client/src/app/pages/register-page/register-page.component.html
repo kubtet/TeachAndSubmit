@@ -1,4 +1,5 @@
 <div class="grid">
+  <p-toast></p-toast>
   <div class="card col-6 align-items-center">
     <app-loading [isLoading]="loading | async" [isOverlay]="true"></app-loading>
     <i class="pi pi-graduation-cap mb-5"></i>
@@ -68,7 +69,7 @@
         <app-button
           class="col-4"
           label="Register"
-          [disabled]="!formGroup?.valid"
+          [disabled]="false"
           (click)="register()"
         ></app-button>
       </div>

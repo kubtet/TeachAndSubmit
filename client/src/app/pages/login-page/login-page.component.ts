@@ -10,9 +10,6 @@ import { AccountService } from 'src/app/services/account.service';
   styleUrls: ['./login-page.component.scss'],
 })
 export class LoginPageComponent {
-  @Output() registerMode: EventEmitter<boolean> = new EventEmitter<boolean>(
-    false
-  );
   protected email: string = '';
   protected password: string = '';
 
@@ -28,6 +25,6 @@ export class LoginPageComponent {
   }
 
   public register() {
-    this.registerMode.emit(true);
+    this.router.navigateByUrl('register');
   }
 }

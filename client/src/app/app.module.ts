@@ -21,6 +21,8 @@ import { CalendarModule } from 'primeng/calendar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { AppLoadingComponent } from './shared/app-loading/app-loading.component';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,7 @@ import { AppLoadingComponent } from './shared/app-loading/app-loading.component'
     MenuModule,
     ProgressSpinnerModule,
     ReactiveFormsModule,
+    ToastModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,5 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { BehaviorSubject } from 'rxjs';
 import { Role } from 'src/app/models/role';
 import { RolesService } from 'src/app/services/roles.service';
@@ -8,18 +10,20 @@ import { RolesService } from 'src/app/services/roles.service';
   selector: 'register-page',
   templateUrl: './register-page.component.html',
   styleUrls: ['./register-page.component.scss'],
+  providers: [MessageService],
 })
 export class RegisterPageComponent implements OnInit {
-  @Output() registerMode: EventEmitter<boolean> = new EventEmitter<boolean>(
-    true
-  );
   protected loading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     false
   );
   protected roles: Role[] = [];
 
   protected formGroup?: FormGroup;
-  constructor(private rolesService: RolesService) {}
+  constructor(
+    private messageService: MessageService,
+    private rolesService: RolesService,
+    private router: Router
+  ) {}
 
   public async ngOnInit() {
     this.loading.next(true);
@@ -53,10 +57,17 @@ export class RegisterPageComponent implements OnInit {
   }
 
   public async register() {
-    console.log(this.formGroup);
+    const control = this.formGroup!.controls;
+    if (control['password'].value !== control['confirmedPassword'].value) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Passwords do not match!',
+      });
+    }
   }
 
   public login() {
-    this.registerMode.emit(false);
+    this.router.navigateByUrl('login');
   }
 }

@@ -1,12 +1,19 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-input-text',
   templateUrl: './app-input-text.component.html',
   styleUrls: ['./app-input-text.component.scss'],
 })
-export class AppInputTextComponent {
+export class AppInputTextComponent implements OnChanges {
   /** FormControl for the input */
   @Input() control?: FormControl;
 
@@ -15,6 +22,9 @@ export class AppInputTextComponent {
 
   /** Label of the input */
   @Input() label: string = '';
+
+  /** Specifies if the value is required to submit the form */
+  @Input() required: boolean = false;
 
   /** Value of the input */
   private _value: string | undefined = '';
@@ -33,11 +43,17 @@ export class AppInputTextComponent {
   /** Flag to toggle password visibility */
   protected showPassword: boolean = false;
 
+  ngOnChanges() {
+    if (this.control) {
+      this.required = this.control.hasValidator(Validators.required);
+    }
+  }
+
   /** Method to handle input changes */
   onValueChange(event: any) {
     this.value = event;
     if (this.control) {
-      this.control.setValue(event);
+      this.required = this.control.hasValidator(Validators.required);
     }
   }
 

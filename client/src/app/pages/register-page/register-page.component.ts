@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { Role } from 'src/app/models/role';
 import { RolesService } from 'src/app/services/roles.service';
@@ -27,12 +27,27 @@ export class RegisterPageComponent implements OnInit {
 
     this.formGroup = new FormGroup({
       dateOfBirth: new FormControl<Date | undefined>(undefined),
-      email: new FormControl<string | undefined>(undefined),
-      name: new FormControl<string | undefined>(undefined),
-      password: new FormControl<string | undefined>(undefined),
-      confirmedPassword: new FormControl<string | undefined>(undefined),
-      roleId: new FormControl<number | undefined>(undefined),
-      surname: new FormControl<string | undefined>(undefined),
+      email: new FormControl<string | undefined>(undefined, [
+        Validators.required,
+        Validators.email,
+      ]),
+      name: new FormControl<string | undefined>(undefined, Validators.required),
+      password: new FormControl<string | undefined>(
+        undefined,
+        Validators.required
+      ),
+      confirmedPassword: new FormControl<string | undefined>(
+        undefined,
+        Validators.required
+      ),
+      roleId: new FormControl<number | undefined>(
+        undefined,
+        Validators.required
+      ),
+      surname: new FormControl<string | undefined>(
+        undefined,
+        Validators.required
+      ),
     });
     this.loading.next(false);
   }

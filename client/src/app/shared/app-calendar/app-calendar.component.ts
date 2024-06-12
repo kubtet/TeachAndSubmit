@@ -1,12 +1,18 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+} from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-calendar',
   templateUrl: './app-calendar.component.html',
   styleUrls: ['./app-calendar.component.scss'],
 })
-export class AppCalendarComponent {
+export class AppCalendarComponent implements OnChanges {
   /** FormControl for the calendar */
   @Input() control?: FormControl;
 
@@ -26,7 +32,16 @@ export class AppCalendarComponent {
   /** Label of the component */
   @Input() label: string = '';
 
+  /** Specifies if the value is required to submit the form */
+  @Input() required: boolean = false;
+
   @Output() dateChange = new EventEmitter<Date>();
+
+  ngOnChanges() {
+    if (this.control) {
+      this.required = this.control.hasValidator(Validators.required);
+    }
+  }
 
   /** Method to handle calendar value changes */
   onValueChange(event: any) {

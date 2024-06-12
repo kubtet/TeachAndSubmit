@@ -1,12 +1,12 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-dropdown',
   templateUrl: './app-dropdown.component.html',
   styleUrls: ['./app-dropdown.component.scss'],
 })
-export class AppDropdownComponent {
+export class AppDropdownComponent implements OnChanges {
   /** FormControl for the dropdown */
   @Input() control?: FormControl;
 
@@ -25,6 +25,9 @@ export class AppDropdownComponent {
   /** Placeholder text to show when filter input is empty. */
   @Input() placeholder: string = '';
 
+  /** Specifies if the value is required to submit the form */
+  @Input() required: boolean = false;
+
   /** Value picked from dropdown */
   private _value: number | undefined;
   @Input()
@@ -38,6 +41,12 @@ export class AppDropdownComponent {
 
   /** Event emitter for value change */
   @Output() valueChange = new EventEmitter<number>();
+
+  ngOnChanges() {
+    if (this.control) {
+      this.required = this.control.hasValidator(Validators.required);
+    }
+  }
 
   /** Method to handle dropdown value changes */
   onValueChange(event: any) {

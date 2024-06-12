@@ -1,5 +1,5 @@
 <div class="mb-3">
-  <label>{{ label }}</label>
+  <label>{{ label }}<span *ngIf="required" style="color: red">*</span></label>
   <p-calendar
     *ngIf="!control; else template"
     [(ngModel)]="date"

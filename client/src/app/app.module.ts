@@ -23,6 +23,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { AppLoadingComponent } from './shared/app-loading/app-loading.component';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { MessageService } from 'primeng/api';
     HomeComponent,
     AppCalendarComponent,
     AppLoadingComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,

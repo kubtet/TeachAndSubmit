@@ -1,8 +1,6 @@
 <ng-container *ngIf="accountService.currentUser$ | async as user; else login">
   <h1>Welcome to {{ title }} {{ user.name }}!</h1>
-  <ul *ngFor="let user of users">
-    <li>{{ user.surname }}</li>
-  </ul>
+  <app-dashboard></app-dashboard>
 </ng-container>
 
 <ng-template #login>

@@ -17,5 +17,11 @@ namespace API.Controllers
         {
             return await context.Tasks.FindAsync(id);
         }
+
+        [HttpGet("repository/{id}")]
+        public async Task<ActionResult<List<Entities.Task>>> GetTasksForRepository(int id)
+        {
+            return await context.Tasks.Where(t => t.RepositoryId == id).ToListAsync();
+        }
     }
 }

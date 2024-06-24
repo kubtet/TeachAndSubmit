@@ -1,0 +1,22 @@
+.card {
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.card-content > div {
+  flex: 1;
+}
+
+.card-content app-button {
+  margin-left: auto;
+}

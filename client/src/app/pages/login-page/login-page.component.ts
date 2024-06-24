@@ -50,6 +50,8 @@ export class LoginPageComponent implements OnInit {
         summary: 'Login failed',
         detail: 'Login or password is incorrect!',
       });
+    } finally {
+      this.router.navigateByUrl('');
     }
 
     this.isLoading.next(false);

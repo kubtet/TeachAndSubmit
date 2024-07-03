@@ -1,5 +1,6 @@
 <div class="grid">
   <app-loading [isLoading]="isLoading | async" [isOverlay]="true"></app-loading>
+  <p *ngIf="repositories === null">You're not a member of any repository!</p>
   <ul *ngFor="let repo of repositories" style="list-style-type: none">
     <div class="grid card">
       <div class="row">
@@ -28,7 +29,7 @@
         </div>
         <div class="col-6"></div>
         <div class="col-3">
-          <app-button *ngIf="user.roleId !== 1 " label="Join"></app-button>
+          <app-button label="Open"></app-button>
           <p class="mt-4">Number of tasks: {{ repo?.numberOfTasks }}</p>
         </div>
       </div>

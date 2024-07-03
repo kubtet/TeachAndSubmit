@@ -82,7 +82,7 @@ namespace API.Controllers
                 })
                 .ToListAsync();
 
-            if (userRepositories.Count == 0) return NotFound();
+            if (userRepositories.Count == 0) return Ok(null);
 
             return Ok(userRepositories);
         }

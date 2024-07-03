@@ -27,6 +27,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { DialogModule } from 'primeng/dialog';
 import { DialogService } from 'primeng/dynamicdialog';
 import { CreateRepositoryComponent } from './create-repository/create-repository.component';
+import { MyRepositoriesComponent } from './my-repositories-all/my-repositories/my-repositories.component';
+import { MyRepositoriesStudentComponent } from './my-repositories-all/my-repositories-student/my-repositories-student.component';
+import { MyRepositoriesTeacherComponent } from './my-repositories-all/my-repositories-teacher/my-repositories-teacher.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +45,9 @@ import { CreateRepositoryComponent } from './create-repository/create-repository
     AppLoadingComponent,
     DashboardComponent,
     CreateRepositoryComponent,
+    MyRepositoriesComponent,
+    MyRepositoriesStudentComponent,
+    MyRepositoriesTeacherComponent,
   ],
   imports: [
     BrowserModule,

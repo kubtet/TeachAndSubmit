@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { RepositoryService } from '../services/repository.service';
 import { Repository } from '../models/repository';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, firstValueFrom } from 'rxjs';
 import { SystemRole } from '../models/systemrole';
 import { TaskService } from '../services/task.service';
+import { AccountService } from '../services/account.service';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,34 +15,20 @@ import { TaskService } from '../services/task.service';
 export class DashboardComponent implements OnInit {
   protected isLoading: BehaviorSubject<boolean> = new BehaviorSubject(false);
   protected repositories: Repository[] = [];
+  protected user: User | undefined;
 
   constructor(
-    private repositoryService: RepositoryService,
-    private taskService: TaskService
+    protected accountService: AccountService,
+    private repositoryService: RepositoryService
   ) {}
 
   public async ngOnInit() {
     this.isLoading.next(true);
     this.repositories = await this.repositoryService.getRepositories();
-    await this.prepareRepos();
-    console.log(this.repositories);
+    if (this.repositories !== null) {
+      await this.repositoryService.prepareRepos(this.repositories);
+    }
+    this.user = await firstValueFrom(this.accountService.currentUser$);
     this.isLoading.next(false);
-  }
-
-  public async prepareRepos() {
-    this.repositories.forEach(async (repo) => {
-      repo.repoUsers = await this.repositoryService.getRepositoryUsers(
-        repo.id!
-      );
-      repo.numberOfStudents = repo.repoUsers.filter(
-        (u) => u.roleId === SystemRole.STUDENT
-      ).length;
-      repo.teachers = repo.repoUsers.filter(
-        (u) => u.roleId === SystemRole.TEACHER
-      );
-      repo.numberOfTasks = await this.taskService.GetNumberOfTasksForRepository(
-        repo.id!
-      );
-    });
   }
 }

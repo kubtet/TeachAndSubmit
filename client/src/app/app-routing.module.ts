@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { HomeComponent } from './home/home.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { MyRepositoriesComponent } from './my-repositories-all/my-repositories/my-repositories.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginPageComponent,
+  },
+  {
+    path: 'myrepos',
+    component: MyRepositoriesComponent,
   },
   {
     path: 'register',

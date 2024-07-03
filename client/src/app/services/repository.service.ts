@@ -5,6 +5,8 @@ import { firstValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { RepoUser } from '../models/repouser';
 import { CreateRepository } from '../models/createrepository';
+import { SystemRole } from '../models/systemrole';
+import { TaskService } from './task.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +14,7 @@ import { CreateRepository } from '../models/createrepository';
 export class RepositoryService {
   protected repositories: Repository[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private taskService: TaskService) {}
 
   public async getRepositories() {
     if (this.repositories.length === 0) {
@@ -33,6 +35,16 @@ export class RepositoryService {
     return repoUsers;
   }
 
+  public async getRepositoriesForUser(userId: number) {
+    const repositories: Repository[] = await firstValueFrom(
+      this.http.get<Repository[]>(
+        environment.apiUrl + 'repositories/' + userId + '/repos'
+      )
+    );
+
+    return repositories;
+  }
+
   public async createRepository(input: CreateRepository) {
     const repo: Repository = await firstValueFrom(
       this.http.post<Repository>(
@@ -43,5 +55,20 @@ export class RepositoryService {
 
     console.log(repo);
     return repo;
+  }
+
+  public async prepareRepos(repositories: Repository[]) {
+    repositories.forEach(async (repo) => {
+      repo.repoUsers = await this.getRepositoryUsers(repo.id!);
+      repo.numberOfStudents = repo.repoUsers.filter(
+        (u) => u.roleId === SystemRole.STUDENT
+      ).length;
+      repo.teachers = repo.repoUsers.filter(
+        (u) => u.roleId === SystemRole.TEACHER
+      );
+      repo.numberOfTasks = await this.taskService.GetNumberOfTasksForRepository(
+        repo.id!
+      );
+    });
   }
 }

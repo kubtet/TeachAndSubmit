@@ -28,9 +28,14 @@
           </li>
         </div>
         <div class="col-6"></div>
-        <div class="col-3">
+        <div class="col-3 mb-3">
           <app-button label="Open"></app-button>
           <p class="mt-4">Number of tasks: {{ repo?.numberOfTasks }}</p>
+          <app-button
+            label="Remove"
+            icon="pi pi-trash"
+            (click)="remove(repo?.id)"
+          ></app-button>
         </div>
       </div>
     </div>

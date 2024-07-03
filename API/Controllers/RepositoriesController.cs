@@ -127,5 +127,19 @@ namespace API.Controllers
                 return StatusCode(500, "An error occurred while creating the repository and user repository. " + ex.Message);
             }
         }
+
+        [HttpDelete("delete/{id}")]
+        public async Task<ActionResult> RemoveRepository(int Id)
+        {
+            var entity = context.Repositories.FirstOrDefault(r => r.Id == Id);
+
+            if (entity != null)
+            {
+                context.Repositories.Remove(entity);
+                await context.SaveChangesAsync();
+            }
+
+            return Ok();
+        }
     }
 }

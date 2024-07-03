@@ -30,6 +30,7 @@ import { CreateRepositoryComponent } from './create-repository/create-repository
 import { MyRepositoriesComponent } from './my-repositories-all/my-repositories/my-repositories.component';
 import { MyRepositoriesStudentComponent } from './my-repositories-all/my-repositories-student/my-repositories-student.component';
 import { MyRepositoriesTeacherComponent } from './my-repositories-all/my-repositories-teacher/my-repositories-teacher.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { MyRepositoriesTeacherComponent } from './my-repositories-all/my-reposit
     MyRepositoriesComponent,
     MyRepositoriesStudentComponent,
     MyRepositoriesTeacherComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,

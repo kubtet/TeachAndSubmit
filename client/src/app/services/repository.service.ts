@@ -53,7 +53,6 @@ export class RepositoryService {
       )
     );
 
-    console.log(repo);
     return repo;
   }
 
@@ -70,5 +69,11 @@ export class RepositoryService {
         repo.id!
       );
     });
+  }
+
+  public async removeRepository(id: number) {
+    await firstValueFrom(
+      this.http.delete(environment.apiUrl + 'repositories/delete/' + id)
+    );
   }
 }

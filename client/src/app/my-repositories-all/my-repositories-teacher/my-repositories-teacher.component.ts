@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { DialogService } from 'primeng/dynamicdialog';
 import { BehaviorSubject, firstValueFrom } from 'rxjs';
+import { ConfirmDialogComponent } from 'src/app/confirm-dialog/confirm-dialog.component';
 import { Repository } from 'src/app/models/repository';
 import { User } from 'src/app/models/user';
 import { AccountService } from 'src/app/services/account.service';
@@ -17,6 +19,7 @@ export class MyRepositoriesTeacherComponent implements OnInit {
 
   constructor(
     protected accountService: AccountService,
+    private dialogService: DialogService,
     private repositoryService: RepositoryService
   ) {}
 
@@ -30,5 +33,19 @@ export class MyRepositoriesTeacherComponent implements OnInit {
       await this.repositoryService.prepareRepos(this.repositories);
     }
     this.isLoading.next(false);
+  }
+
+  public async remove(id: number) {
+    const dialog = this.dialogService.open(ConfirmDialogComponent, {
+      header: 'Remove Repository',
+      width: '50%',
+      data: { repositoryId: id },
+    });
+
+    dialog.onClose.subscribe(() => {
+      this.isLoading.next(true);
+      window.location.reload();
+      this.isLoading.next(false);
+    });
   }
 }

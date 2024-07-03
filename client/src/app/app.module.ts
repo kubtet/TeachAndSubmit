@@ -24,6 +24,9 @@ import { AppLoadingComponent } from './shared/app-loading/app-loading.component'
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { DialogModule } from 'primeng/dialog';
+import { DialogService } from 'primeng/dynamicdialog';
+import { CreateRepositoryComponent } from './create-repository/create-repository.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     AppCalendarComponent,
     AppLoadingComponent,
     DashboardComponent,
+    CreateRepositoryComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +49,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     BrowserAnimationsModule,
     ButtonModule,
     CalendarModule,
+    DialogModule,
     DropdownModule,
     FormsModule,
     HttpClientModule,
@@ -54,7 +59,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     ReactiveFormsModule,
     ToastModule,
   ],
-  providers: [],
+  providers: [DialogService, MessageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

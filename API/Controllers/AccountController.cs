@@ -36,6 +36,8 @@ namespace API.Controllers
 
             return new UserDto
             {
+                Id = user.Id,
+                RoleId = user.RoleId,
                 DateOfBirth = user.DateOfBirth,
                 Email = user.Email,
                 Name = user.Name,
@@ -63,6 +65,9 @@ namespace API.Controllers
 
             return new UserDto
             {
+                Id = user.Id,
+                RoleId = user.RoleId,
+                DateOfBirth = user.DateOfBirth,
                 Email = user.Email,
                 Name = user.Name,
                 Surname = user.Surname,

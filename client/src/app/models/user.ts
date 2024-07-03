@@ -5,9 +5,6 @@ export class User {
   name: string | undefined;
   surname: string | undefined;
   email: string | undefined;
-  password: string | undefined;
-  passwordHash: string | undefined;
-  passwordSalt: string | undefined;
   dateOfBirth: Date | undefined;
   roleId: number | undefined;
   role: Role | undefined;

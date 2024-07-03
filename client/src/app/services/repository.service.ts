@@ -4,6 +4,7 @@ import { Repository } from '../models/repository';
 import { firstValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { RepoUser } from '../models/repouser';
+import { CreateRepository } from '../models/createrepository';
 
 @Injectable({
   providedIn: 'root',
@@ -30,5 +31,17 @@ export class RepositoryService {
     );
 
     return repoUsers;
+  }
+
+  public async createRepository(input: CreateRepository) {
+    const repo: Repository = await firstValueFrom(
+      this.http.post<Repository>(
+        environment.apiUrl + 'repositories/create',
+        input
+      )
+    );
+
+    console.log(repo);
+    return repo;
   }
 }

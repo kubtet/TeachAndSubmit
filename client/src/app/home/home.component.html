@@ -1,5 +1,12 @@
 <ng-container *ngIf="accountService.currentUser$ | async as user; else login">
   <h1>Welcome to {{ title }} {{ user.name }}!</h1>
+  <div class="col-3" *ngIf="user.roleName === 'Teacher'">
+    <app-button
+      class="m-5"
+      label="Add Repository"
+      (click)="openCreationDialog()"
+    ></app-button>
+  </div>
   <app-dashboard></app-dashboard>
 </ng-container>
 

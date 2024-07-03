@@ -1,0 +1,14 @@
+<app-loading [isLoading]="loading | async" [isOverlay]="true"></app-loading>
+<div class="col-6">
+  <app-input-text
+    label="Enter the name of the subject"
+    [control]="subject"
+  ></app-input-text>
+</div>
+<div class="col-3">
+  <app-button
+    label="Create"
+    [disabled]="!subject.valid"
+    (click)="createRepository()"
+  ></app-button>
+</div>

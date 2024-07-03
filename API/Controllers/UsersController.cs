@@ -12,6 +12,7 @@ namespace API.Controllers
         {
             return await context.Users
                 .Include(u => u.Role)
+                .Include(u => u.UserRepositories)
                 .ToListAsync();
         }
 
@@ -20,6 +21,7 @@ namespace API.Controllers
         {
             return await context.Users
                 .Include(u => u.Role)
+                .Include(u => u.UserRepositories)
                 .FirstOrDefaultAsync(u => u.Id == id);
         }
     }

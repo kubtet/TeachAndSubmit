@@ -68,6 +68,25 @@ namespace API.Controllers
             return Ok(users);
         }
 
+        [HttpGet("{id}/repos")]
+        public async Task<ActionResult<List<Repository>>> GetRepositoriesForUser(int Id)
+        {
+            var userRepositories = await context.Users
+                .Where(u => u.Id == Id)
+                .SelectMany(u => u.UserRepositories)
+                .Select(ur => new Repository
+                {
+                    Id = ur.RepositoryId,
+                    Subject = ur.Repository.Subject,
+                    UserRepositories = ur.Repository.UserRepositories
+                })
+                .ToListAsync();
+
+            if (userRepositories.Count == 0) return NotFound();
+
+            return Ok(userRepositories);
+        }
+
         [HttpPost("create")]
         public async Task<ActionResult<Repository>> CreateRepository(CreateRepositoryDto input)
         {

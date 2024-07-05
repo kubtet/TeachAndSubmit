@@ -4,6 +4,7 @@ import { RegisterPageComponent } from './pages/register-page/register-page.compo
 import { HomeComponent } from './home/home.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { MyRepositoriesComponent } from './my-repositories-all/my-repositories/my-repositories.component';
+import { RepositoryViewComponent } from './repository-view/repository-view.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterPageComponent,
+  },
+  {
+    path: 'repository/:id',
+    component: RepositoryViewComponent,
   },
   {
     path: '',

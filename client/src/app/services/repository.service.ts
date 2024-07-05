@@ -25,6 +25,14 @@ export class RepositoryService {
     return this.repositories;
   }
 
+  public async getRepository(id: number) {
+    const repository = await firstValueFrom(
+      this.http.get<Repository>(environment.apiUrl + 'repositories/' + id)
+    );
+
+    return repository;
+  }
+
   public async getRepositoryUsers(repoId: number) {
     const repoUsers: RepoUser[] = await firstValueFrom(
       this.http.get<RepoUser[]>(

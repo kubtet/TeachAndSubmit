@@ -31,7 +31,8 @@ import { MyRepositoriesComponent } from './my-repositories-all/my-repositories/m
 import { MyRepositoriesStudentComponent } from './my-repositories-all/my-repositories-student/my-repositories-student.component';
 import { MyRepositoriesTeacherComponent } from './my-repositories-all/my-repositories-teacher/my-repositories-teacher.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
-
+import { RepositoryViewComponent } from './repository-view/repository-view.component';
+import { FileUploadModule } from 'primeng/fileupload';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +51,7 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
     MyRepositoriesStudentComponent,
     MyRepositoriesTeacherComponent,
     ConfirmDialogComponent,
+    RepositoryViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +61,7 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
     CalendarModule,
     DialogModule,
     DropdownModule,
+    FileUploadModule,
     FormsModule,
     HttpClientModule,
     InputTextModule,

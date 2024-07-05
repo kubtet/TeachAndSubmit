@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DialogService } from 'primeng/dynamicdialog';
 import { BehaviorSubject, firstValueFrom } from 'rxjs';
 import { ConfirmDialogComponent } from 'src/app/confirm-dialog/confirm-dialog.component';
@@ -20,7 +21,8 @@ export class MyRepositoriesTeacherComponent implements OnInit {
   constructor(
     protected accountService: AccountService,
     private dialogService: DialogService,
-    private repositoryService: RepositoryService
+    private repositoryService: RepositoryService,
+    private router: Router
   ) {}
 
   public async ngOnInit() {
@@ -47,5 +49,9 @@ export class MyRepositoriesTeacherComponent implements OnInit {
       window.location.reload();
       this.isLoading.next(false);
     });
+  }
+
+  public async openRepo(id: number) {
+    this.router.navigateByUrl('repository/' + id);
   }
 }

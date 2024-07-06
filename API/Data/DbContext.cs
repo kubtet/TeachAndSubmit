@@ -19,6 +19,8 @@ namespace API.Data
         public DbSet<Repository> Repositories { get; set; }
 
         public DbSet<Entities.Task> Tasks { get; set; }
+        
+        public DbSet<Notification> Notifications { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

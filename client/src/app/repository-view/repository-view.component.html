@@ -1,8 +1,11 @@
 <app-loading [isLoading]="isLoading | async" [isOverlay]="true"></app-loading>
 <p-toast></p-toast>
 <h2>{{ repository?.subject }}</h2>
-<div class="col-3 mb-3">
-  <app-button label="Add new task"></app-button>
+<div class="col-3 mb-3" *ngIf="user?.roleId === 1">
+  <app-button
+    label="Add new task"
+    (click)="openCreateTaskDialog()"
+  ></app-button>
 </div>
 <div class="card" *ngFor="let task of tasks">
   <div class="row">
@@ -14,7 +17,7 @@
         <p>Due: {{ task.deadlineDate | date : "dd.MM.yyyy" }}</p>
       </div>
     </div>
-    <div class="col-6 mb-2">
+    <div class="col-5 mb-2">
       <p-fileUpload
         url="https://www.primefaces.org/cdn/api/upload.php"
         (onUpload)="onUpload($event, task)"
@@ -27,6 +30,9 @@
           </ul>
         </ng-template>
       </p-fileUpload>
+    </div>
+    <div class="col-1" *ngIf="user?.roleId === 1">
+      <app-button icon="pi pi-trash" (click)="removeTask(task.id)"></app-button>
     </div>
   </div>
 </div>

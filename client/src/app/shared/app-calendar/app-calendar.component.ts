@@ -16,6 +16,9 @@ export class AppCalendarComponent implements OnChanges {
   /** FormControl for the calendar */
   @Input() control?: FormControl;
 
+  /** The minimum selectable date. */
+  @Input() minDate?: Date;
+
   /** Value of the component */
   private _date?: Date;
 

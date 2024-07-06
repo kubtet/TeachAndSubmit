@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Task } from '../models/task';
+import { CreateTask } from '../models/createtask';
 
 @Injectable({
   providedIn: 'root',
@@ -26,5 +27,19 @@ export class TaskService {
     );
 
     return tasks.length;
+  }
+
+  public async CreateTask(input: CreateTask) {
+    const task = await firstValueFrom(
+      this.http.post<Task>(environment.apiUrl + 'tasks/create', input)
+    );
+
+    return task;
+  }
+
+  public async RemoveTask(id: number) {
+    await firstValueFrom(
+      this.http.delete(environment.apiUrl + 'tasks/delete/' + id)
+    );
   }
 }

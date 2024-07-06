@@ -3,12 +3,14 @@
   <p-calendar
     *ngIf="!control; else template"
     [(ngModel)]="date"
+    [minDate]="minDate"
     dateFormat="dd.mm.yy"
     [showIcon]="true"
   ></p-calendar>
   <ng-template #template>
     <p-calendar
       [formControl]="control"
+      [minDate]="minDate"
       dateFormat="dd.mm.yy"
       [showIcon]="true"
     ></p-calendar>

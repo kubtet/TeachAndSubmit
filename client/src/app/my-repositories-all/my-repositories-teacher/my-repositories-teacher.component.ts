@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { DialogService } from 'primeng/dynamicdialog';
 import { BehaviorSubject, firstValueFrom } from 'rxjs';
 import { ConfirmDialogComponent } from 'src/app/confirm-dialog/confirm-dialog.component';
+import { RemoveEntity } from 'src/app/models/removeentity';
 import { Repository } from 'src/app/models/repository';
 import { User } from 'src/app/models/user';
 import { AccountService } from 'src/app/services/account.service';
@@ -41,7 +42,7 @@ export class MyRepositoriesTeacherComponent implements OnInit {
     const dialog = this.dialogService.open(ConfirmDialogComponent, {
       header: 'Remove Repository',
       width: '50%',
-      data: { repositoryId: id },
+      data: { id: id, toBeRemoved: RemoveEntity.REPOSITORY },
     });
 
     dialog.onClose.subscribe(() => {

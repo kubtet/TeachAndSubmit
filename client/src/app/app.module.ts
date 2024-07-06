@@ -33,6 +33,7 @@ import { MyRepositoriesTeacherComponent } from './my-repositories-all/my-reposit
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { RepositoryViewComponent } from './repository-view/repository-view.component';
 import { FileUploadModule } from 'primeng/fileupload';
+import { CreateTaskComponent } from './create-task/create-task.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +53,7 @@ import { FileUploadModule } from 'primeng/fileupload';
     MyRepositoriesTeacherComponent,
     ConfirmDialogComponent,
     RepositoryViewComponent,
+    CreateTaskComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,27 @@
+<div class="col-3">
+  <app-input-text
+    [control]="formGroup?.controls.name"
+    label="Enter the name of the task"
+  ></app-input-text>
+</div>
+<div class="col-12">
+  <app-input-text
+    [control]="formGroup?.controls.description"
+    label="Enter the description of the task"
+  ></app-input-text>
+</div>
+<div class="col-3">
+  <app-calendar
+    [control]="formGroup?.controls.deadlineDate"
+    [minDate]="minDate"
+    label="Set the deadline date"
+  ></app-calendar>
+</div>
+
+<div class="col-3 mt-4">
+  <app-button
+    label="Create"
+    [disabled]="!formGroup.valid"
+    (click)="createTask()"
+  ></app-button>
+</div>

@@ -87,6 +87,30 @@ namespace API.Controllers
             return Ok(userRepositories);
         }
 
+        [HttpGet("{id}/nonrepos")]
+        public async Task<ActionResult<List<Repository>>> GetRepositoriesNotFromUser(int Id)
+        {
+            var userRepositoryIds = await context.UsersRepositories
+                .Where(ur => ur.UserId == Id)
+                .Select(ur => ur.RepositoryId)
+                .ToListAsync();
+
+            var nonUserRepositories = await context.Repositories
+                .Where(r => !userRepositoryIds.Contains(r.Id))
+                .Select(r => new Repository
+                {
+                    Id = r.Id,
+                    Subject = r.Subject,
+                    UserRepositories = r.UserRepositories
+                })
+                .ToListAsync();
+
+            if (nonUserRepositories.Count == 0) return Ok(null);
+
+            return Ok(nonUserRepositories);
+        }
+
+
         [HttpPost("create")]
         public async Task<ActionResult<Repository>> CreateRepository(CreateRepositoryDto input)
         {

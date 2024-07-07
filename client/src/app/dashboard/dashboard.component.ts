@@ -30,11 +30,11 @@ export class DashboardComponent implements OnInit {
 
   public async ngOnInit() {
     this.isLoading.next(true);
-    this.repositories = await this.repositoryService.getRepositories();
+    this.user = await firstValueFrom(this.accountService.currentUser$);
+    this.repositories = await this.repositoryService.getRepositoriesNotFromUser(this.user.id);
     if (this.repositories !== null) {
       await this.repositoryService.prepareRepos(this.repositories);
     }
-    this.user = await firstValueFrom(this.accountService.currentUser$);
     this.isLoading.next(false);
   }
 

@@ -53,6 +53,16 @@ export class RepositoryService {
     return repositories;
   }
 
+  public async getRepositoriesNotFromUser(userId: number) {
+    const repositories: Repository[] = await firstValueFrom(
+      this.http.get<Repository[]>(
+        environment.apiUrl + 'repositories/' + userId + '/nonrepos'
+      )
+    );
+
+    return repositories;
+  }
+
   public async createRepository(input: CreateRepository) {
     const repo: Repository = await firstValueFrom(
       this.http.post<Repository>(

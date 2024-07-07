@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { DialogService } from 'primeng/dynamicdialog';
 import { BehaviorSubject, firstValueFrom } from 'rxjs';
 import { ConfirmDialogComponent } from 'src/app/confirm-dialog/confirm-dialog.component';
+import { CreateRepositoryComponent } from 'src/app/create-repository/create-repository.component';
 import { RemoveEntity } from 'src/app/models/removeentity';
 import { Repository } from 'src/app/models/repository';
 import { User } from 'src/app/models/user';
@@ -36,6 +37,19 @@ export class MyRepositoriesTeacherComponent implements OnInit {
       await this.repositoryService.prepareRepos(this.repositories);
     }
     this.isLoading.next(false);
+  }
+
+  public async openCreationDialog() {
+    const ref = this.dialogService.open(CreateRepositoryComponent, {
+      header: 'Create Repository',
+      width: '50%',
+      contentStyle: { 'max-height': '500px', overflow: 'auto' },
+      baseZIndex: 10000,
+    });
+
+    ref.onClose.subscribe(() => {
+      window.location.reload();
+    });
   }
 
   public async remove(id: number) {

@@ -1,43 +1,45 @@
 <div class="grid">
   <app-loading [isLoading]="isLoading | async" [isOverlay]="true"></app-loading>
   <p *ngIf="repositories === null">You're not a member of any repository!</p>
-  <ul *ngFor="let repo of repositories" style="list-style-type: none">
-    <div class="grid card">
-      <div class="row">
-        <div class="col-3">
-          <li>
-            <h1>{{ repo.subject }}</h1>
-            <ng-container
-              *ngIf="repo.teachers?.length === 1; else multipleTeachers"
-            >
-              <p>
-                Teacher: {{ repo.teachers[0].name }}
-                {{ repo.teachers[0].surname }}
-              </p>
-            </ng-container>
-            <ng-template #multipleTeachers>
-              <p>
-                Teachers:
-                <span *ngFor="let teacher of repo.teachers; let last = last">
-                  {{ teacher.name }} {{ teacher.surname
-                  }}<span *ngIf="!last">, </span>
-                </span>
-              </p>
-            </ng-template>
-            <p>Number of users: {{ repo.numberOfStudents }}</p>
-          </li>
-        </div>
-        <div class="col-6"></div>
-        <div class="col-3 mb-3">
-          <app-button label="Open" (click)="openRepo(repo?.id)"></app-button>
-          <p class="mt-4">Number of tasks: {{ repo?.numberOfTasks }}</p>
-          <app-button
-            label="Remove"
-            icon="pi pi-trash"
-            (click)="remove(repo?.id)"
-          ></app-button>
-        </div>
+  <div class="col-3 mb-3">
+    <app-button
+      label="Add Repository"
+      (click)="openCreationDialog()"
+    ></app-button>
+  </div>
+  <div class="card mb-3" *ngFor="let repo of repositories">
+    <div class="row">
+      <div class="col-3">
+        <h1>{{ repo.subject }}</h1>
+        <ng-container
+          *ngIf="repo.teachers?.length === 1; else multipleTeachers"
+        >
+          <p>
+            Teacher: {{ repo.teachers[0].name }}
+            {{ repo.teachers[0].surname }}
+          </p>
+        </ng-container>
+        <ng-template #multipleTeachers>
+          <p>
+            Teachers:
+            <span *ngFor="let teacher of repo.teachers; let last = last">
+              {{ teacher.name }} {{ teacher.surname
+              }}<span *ngIf="!last">, </span>
+            </span>
+          </p>
+        </ng-template>
+        <p>Number of users: {{ repo.numberOfStudents }}</p>
+      </div>
+      <div class="col-6"></div>
+      <div class="col-3 mb-3">
+        <app-button label="Open" (click)="openRepo(repo?.id)"></app-button>
+        <p class="mt-4">Number of tasks: {{ repo?.numberOfTasks }}</p>
+        <app-button
+          label="Remove"
+          icon="pi pi-trash"
+          (click)="remove(repo?.id)"
+        ></app-button>
       </div>
     </div>
-  </ul>
+  </div>
 </div>

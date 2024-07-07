@@ -6,6 +6,10 @@ import { SystemRole } from '../models/systemrole';
 import { TaskService } from '../services/task.service';
 import { AccountService } from '../services/account.service';
 import { User } from '../models/user';
+import { MessageService } from 'primeng/api';
+import { AddNotification } from '../models/addnotification';
+import { Teacher } from '../models/teacher';
+import { NotificationService } from '../services/notification.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,6 +23,8 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     protected accountService: AccountService,
+    private messageService: MessageService,
+    private notificationService: NotificationService,
     private repositoryService: RepositoryService
   ) {}
 
@@ -29,6 +35,26 @@ export class DashboardComponent implements OnInit {
       await this.repositoryService.prepareRepos(this.repositories);
     }
     this.user = await firstValueFrom(this.accountService.currentUser$);
+    this.isLoading.next(false);
+  }
+
+  public async JoinCourse(repoId: number, teachers: Teacher[]) {
+    this.messageService.add({
+      severity: 'info',
+      summary: 'Notification sent',
+      detail: 'The teacher of this repository will consider your request',
+    });
+
+    this.isLoading.next(true);
+    teachers.forEach((t) => {
+      const input: AddNotification = {
+        teacherId: t.id,
+        studentId: this.user.id,
+        repositoryId: repoId,
+      };
+
+      this.notificationService.addNotificationToJoinTheCourse(input);
+    });
     this.isLoading.next(false);
   }
 }

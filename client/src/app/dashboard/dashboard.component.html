@@ -1,5 +1,6 @@
 <div class="grid">
   <app-loading [isLoading]="isLoading | async" [isOverlay]="true"></app-loading>
+  <p-toast></p-toast>
   <div class="card mb-3" *ngFor="let repo of repositories">
     <div class="row">
       <div class="col-3">
@@ -25,7 +26,11 @@
       </div>
       <div class="col-6"></div>
       <div class="col-3">
-        <app-button *ngIf="user.roleId !== 1" label="Join"></app-button>
+        <app-button
+          *ngIf="user.roleId !== 1"
+          label="Join"
+          (click)="JoinCourse(repo.id, repo.teachers)"
+        ></app-button>
         <p class="mt-4">Number of tasks: {{ repo?.numberOfTasks }}</p>
       </div>
     </div>

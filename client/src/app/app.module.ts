@@ -34,6 +34,8 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 import { RepositoryViewComponent } from './repository-view/repository-view.component';
 import { FileUploadModule } from 'primeng/fileupload';
 import { CreateTaskComponent } from './create-task/create-task.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { TableModule } from 'primeng/table';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +56,7 @@ import { CreateTaskComponent } from './create-task/create-task.component';
     ConfirmDialogComponent,
     RepositoryViewComponent,
     CreateTaskComponent,
+    NotificationsComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,6 +73,7 @@ import { CreateTaskComponent } from './create-task/create-task.component';
     MenuModule,
     ProgressSpinnerModule,
     ReactiveFormsModule,
+    TableModule,
     ToastModule,
   ],
   providers: [DialogService, MessageService],

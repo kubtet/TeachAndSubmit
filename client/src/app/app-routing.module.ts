@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { MyRepositoriesComponent } from './my-repositories-all/my-repositories/my-repositories.component';
 import { RepositoryViewComponent } from './repository-view/repository-view.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'myrepos',
     component: MyRepositoriesComponent,
+  },
+  {
+    path: 'notifications',
+    component: NotificationsComponent,
   },
   {
     path: 'register',

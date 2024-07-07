@@ -55,6 +55,16 @@ namespace API.Controllers
                 return BadRequest("Related entity doesn't exist");
             }
 
+            var existingNotification = await context.Notifications
+                .Where(n => n.TeacherId == input.TeacherId &&
+                    n.StudentId == input.StudentId &&
+                    n.RepositoryId == input.RepositoryId).FirstOrDefaultAsync();
+
+            if (existingNotification != null)
+            {
+                return BadRequest("This notification already exists");
+            }
+
             var notification = new Notification
             {
                 StudentId = input.StudentId,

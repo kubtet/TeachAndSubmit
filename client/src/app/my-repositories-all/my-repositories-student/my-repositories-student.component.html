@@ -24,12 +24,12 @@
                 </span>
               </p>
             </ng-template>
-            <p>Number of users: {{ repo.numberOfStudents }}</p>
+            <p>Number of students: {{ repo.numberOfStudents }}</p>
           </li>
         </div>
         <div class="col-6"></div>
         <div class="col-3">
-          <app-button label="Open"></app-button>
+          <app-button label="Open" (click)="openRepo(repo?.id)"></app-button>
           <p class="mt-4">Number of tasks: {{ repo?.numberOfTasks }}</p>
         </div>
       </div>

@@ -4,7 +4,7 @@ import { User } from './user';
 export class Notification {
   id: number;
   teacherId: number;
-  studetnId: number;
+  studentId: number;
   repositoryId: number;
   content: string;
   teacher: User;

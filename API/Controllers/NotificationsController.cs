@@ -30,14 +30,9 @@ namespace API.Controllers
                 .Include(n => n.Repository)
                 .ToListAsync();
 
-            if (notifications.Count > 0)
-            {
-                return Ok(notifications);
-            }
-
-            return NotFound();
+            return Ok(notifications);
         }
-
+ 
         [HttpPost("add")]
         public async Task<ActionResult<Notification>> AddNotification(AddNotificationDto input)
         {
@@ -77,6 +72,43 @@ namespace API.Controllers
             await context.SaveChangesAsync();
 
             return Ok(notification);
+        }
+
+        [HttpPost("handle")]
+        public async Task<ActionResult> HandleNotification(HandleNotificationDto input)
+        {
+            if (input == null)
+            {
+                return BadRequest("No input data");
+            }
+
+            var notification = await context.Notifications.FindAsync(input.NotificationId);
+            if (notification == null)
+            {
+                return NotFound("There is no notification like this");
+            }
+
+            if (input.Accepted)
+            {
+                var repository = await context.Repositories.FindAsync(input.RepositoryId);
+                if (repository == null)
+                {
+                    return NotFound("There is no repository like this");
+                }
+
+                var userRepository = new UserRepository
+                {
+                    UserId = input.StudentId,
+                    RepositoryId = input.RepositoryId
+                };
+
+                context.UsersRepositories.Add(userRepository);
+            }
+
+            context.Notifications.Remove(notification);
+            await context.SaveChangesAsync();
+
+            return Ok();
         }
     }
 }

@@ -1,20 +1,36 @@
 <p-toast></p-toast>
-<p-table [value]="notifications">
-  <ng-template pTemplate="header">
-    <tr>
-      <th>Notifications</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-notification>
-    <tr>
-      <td>
-        {{ notification.student.name }} {{ notification.student.surname }}
-        {{ notification.content }} {{ notification.repository.subject }}
-      </td>
-      <td><app-button icon="pi pi-times"></app-button></td>
-      <td><app-button icon="pi pi-check"></app-button></td>
-    </tr>
-  </ng-template>
-</p-table>
+<app-loading [isLoading]="isLoading | async" [isOverlay]="true"></app-loading>
+<p *ngIf="notifications.length === 0; else showTable">
+  You don't have any notifications
+</p>
+<ng-template #showTable>
+  <p-table [value]="notifications">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Notifications</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-notification>
+      <tr>
+        <td>
+          {{ notification.student.name }} {{ notification.student.surname }}
+          {{ notification.content }} {{ notification.repository.subject }}
+        </td>
+        <td>
+          <app-button
+            icon="pi pi-times"
+            (click)="approve(notification, false)"
+          ></app-button>
+        </td>
+        <td>
+          <app-button
+            icon="pi pi-check"
+            (click)="approve(notification, true)"
+          ></app-button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</ng-template>

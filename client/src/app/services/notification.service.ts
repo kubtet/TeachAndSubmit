@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AddNotification } from '../models/addnotification';
+import { HandleNotification } from '../models/handlenotification';
+import { Notification } from '../models/notification';
 
 @Injectable({
   providedIn: 'root',
@@ -16,16 +18,21 @@ export class NotificationService {
         environment.apiUrl + 'notifications/teacher/' + id
       )
     );
-
     return notifications;
   }
 
   public async addNotificationToJoinTheCourse(input: AddNotification) {
-    const notification: Notification = await firstValueFrom(
+    await firstValueFrom(
       this.http.post<Notification>(
         environment.apiUrl + 'notifications/add',
         input
       )
+    );
+  }
+
+  public async handleNotification(input: HandleNotification) {
+    await firstValueFrom(
+      this.http.post(environment.apiUrl + 'notifications/handle', input)
     );
   }
 }

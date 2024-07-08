@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, firstValueFrom } from 'rxjs';
 import { Repository } from 'src/app/models/repository';
 import { User } from 'src/app/models/user';
@@ -17,7 +18,8 @@ export class MyRepositoriesStudentComponent implements OnInit {
 
   constructor(
     protected accountService: AccountService,
-    private repositoryService: RepositoryService
+    private repositoryService: RepositoryService,
+    private router: Router
   ) {}
 
   public async ngOnInit() {
@@ -30,5 +32,9 @@ export class MyRepositoriesStudentComponent implements OnInit {
       await this.repositoryService.prepareRepos(this.repositories);
     }
     this.isLoading.next(false);
+  }
+
+  public async openRepo(id: number) {
+    this.router.navigateByUrl('repository/' + id);
   }
 }

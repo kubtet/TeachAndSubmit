@@ -18,9 +18,10 @@ export class RegisterPageComponent implements OnInit {
   protected loading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     false
   );
+  protected maxDate: Date;
   protected roles: Role[] = [];
 
-  protected formGroup?: FormGroup;
+  protected formGroup: FormGroup;
   constructor(
     private accountService: AccountService,
     private messageService: MessageService,
@@ -31,6 +32,7 @@ export class RegisterPageComponent implements OnInit {
   public async ngOnInit() {
     this.loading.next(true);
     this.roles = await this.rolesService.getRoles();
+    this.maxDate = new Date(Date.now());
 
     this.formGroup = new FormGroup({
       dateOfBirth: new FormControl<Date | undefined>(undefined),
@@ -77,9 +79,19 @@ export class RegisterPageComponent implements OnInit {
       input.roleId = control['roleId'].value;
       input.surname = control['surname'].value;
 
-      await firstValueFrom(this.accountService.register(input));
-      this.loading.next(false);
-      this.router.navigateByUrl('');
+      try {
+        await firstValueFrom(this.accountService.register(input));
+        this.loading.next(false);
+        this.router.navigateByUrl('');
+      } catch {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Account with this email already exists!',
+        });
+      } finally {
+        this.loading.next(false);
+      }
     }
   }
 

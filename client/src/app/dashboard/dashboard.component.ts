@@ -31,7 +31,9 @@ export class DashboardComponent implements OnInit {
   public async ngOnInit() {
     this.isLoading.next(true);
     this.user = await firstValueFrom(this.accountService.currentUser$);
-    this.repositories = await this.repositoryService.getRepositoriesNotFromUser(this.user.id);
+    this.repositories = await this.repositoryService.getRepositoriesNotFromUser(
+      this.user.id
+    );
     if (this.repositories !== null) {
       await this.repositoryService.prepareRepos(this.repositories);
     }
@@ -46,14 +48,18 @@ export class DashboardComponent implements OnInit {
     });
 
     this.isLoading.next(true);
-    teachers.forEach((t) => {
+    teachers.forEach(async (t) => {
       const input: AddNotification = {
         teacherId: t.id,
         studentId: this.user.id,
         repositoryId: repoId,
       };
 
-      this.notificationService.addNotificationToJoinTheCourse(input);
+      try {
+        await this.notificationService.addNotificationToJoinTheCourse(input);
+      } catch {
+        console.log('Notification already was sent');
+      }
     });
     this.isLoading.next(false);
   }

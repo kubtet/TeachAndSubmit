@@ -3,7 +3,6 @@
   <div class="card col-6 align-items-center">
     <app-loading [isLoading]="loading | async" [isOverlay]="true"></app-loading>
     <i class="pi pi-graduation-cap mb-5"></i>
-    <form #registrationFrom="ngForm" (ngSubmit)="register()"></form>
     <div class="container justify-content-center">
       <div class="row">
         <div class="col-6">
@@ -43,6 +42,7 @@
         <div class="col-6">
           <app-calendar
             [control]="formGroup?.controls.dateOfBirth"
+            [maxDate]="maxDate"
             label="Date of birth"
           ></app-calendar>
         </div>
@@ -70,14 +70,18 @@
           class="col-4"
           label="Register"
           [disabled]="!formGroup?.valid"
-          (click)="register()"
+          (onClick)="register()"
         ></app-button>
       </div>
     </div>
     <div class="container mt-3">
       <p>Do you already have an account?</p>
       <div class="d-flex">
-        <app-button class="col-3" label="Log in" (click)="login()"></app-button>
+        <app-button
+          class="col-3"
+          label="Log in"
+          (onClick)="login()"
+        ></app-button>
       </div>
     </div>
   </div>

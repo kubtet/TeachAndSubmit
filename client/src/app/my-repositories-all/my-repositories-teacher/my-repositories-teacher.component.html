@@ -4,7 +4,7 @@
   <div class="col-3 mb-3">
     <app-button
       label="Add Repository"
-      (click)="openCreationDialog()"
+      (onClick)="openCreationDialog()"
     ></app-button>
   </div>
   <div class="card mb-3" *ngFor="let repo of repositories">
@@ -32,12 +32,12 @@
       </div>
       <div class="col-6"></div>
       <div class="col-3 mb-3">
-        <app-button label="Open" (click)="openRepo(repo?.id)"></app-button>
+        <app-button label="Open" (onClick)="openRepo(repo?.id)"></app-button>
         <p class="mt-4">Number of tasks: {{ repo?.numberOfTasks }}</p>
         <app-button
           label="Remove"
           icon="pi pi-trash"
-          (click)="remove(repo?.id)"
+          (onClick)="remove(repo?.id)"
         ></app-button>
       </div>
     </div>

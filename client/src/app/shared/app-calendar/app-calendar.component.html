@@ -3,6 +3,7 @@
   <p-calendar
     *ngIf="!control; else template"
     [(ngModel)]="date"
+    [maxDate]="maxDate"
     [minDate]="minDate"
     dateFormat="dd.mm.yy"
     [showIcon]="true"
@@ -10,6 +11,7 @@
   <ng-template #template>
     <p-calendar
       [formControl]="control"
+      [maxDate]="maxDate"
       [minDate]="minDate"
       dateFormat="dd.mm.yy"
       [showIcon]="true"

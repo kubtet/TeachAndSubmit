@@ -4,7 +4,7 @@
 <div class="col-3 mb-3" *ngIf="user?.roleId === 1">
   <app-button
     label="Add new task"
-    (click)="openCreateTaskDialog()"
+    (onClick)="openCreateTaskDialog()"
   ></app-button>
 </div>
 <div class="card" *ngFor="let task of tasks">
@@ -32,7 +32,10 @@
       </p-fileUpload>
     </div>
     <div class="col-1" *ngIf="user?.roleId === 1">
-      <app-button icon="pi pi-trash" (click)="removeTask(task.id)"></app-button>
+      <app-button
+        icon="pi pi-trash"
+        (onClick)="removeTask(task.id)"
+      ></app-button>
     </div>
   </div>
 </div>

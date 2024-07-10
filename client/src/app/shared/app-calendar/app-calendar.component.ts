@@ -14,13 +14,16 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class AppCalendarComponent implements OnChanges {
   /** FormControl for the calendar */
-  @Input() control?: FormControl;
+  @Input() control: FormControl;
+
+  /** The maximum selectable date. */
+  @Input() maxDate: Date;
 
   /** The minimum selectable date. */
-  @Input() minDate?: Date;
+  @Input() minDate: Date;
 
   /** Value of the component */
-  private _date?: Date;
+  private _date: Date;
 
   @Input()
   get date(): Date | undefined {

@@ -29,7 +29,7 @@
         <app-button
           *ngIf="user.roleId !== 1"
           label="Join"
-          (click)="JoinCourse(repo.id, repo.teachers)"
+          (onClick)="JoinCourse(repo.id, repo.teachers)"
         ></app-button>
         <p class="mt-4">Number of tasks: {{ repo?.numberOfTasks }}</p>
       </div>

@@ -30,7 +30,7 @@
         label="Welcome"
         icon="pi pi-angle-down"
         [iconPos]="iconPosition"
-        (click)="menu.toggle($event)"
+        (onClick)="menu.toggle($event)"
       ></app-button>
       <p-menu #menu [model]="items" [popup]="true"></p-menu>
     </ng-container>

@@ -21,7 +21,7 @@ export class CreateTaskComponent implements OnInit {
 
   public async ngOnInit() {
     const today = new Date(Date.now());
-    this.minDate.setDate(today.getDate() + 7);
+    this.minDate.setDate(today.getDate());
 
     this.formGroup = new FormGroup({
       name: new FormControl<string>(undefined, [Validators.required]),

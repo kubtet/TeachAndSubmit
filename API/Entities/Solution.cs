@@ -8,5 +8,6 @@ namespace API.Entities
         public string FilePath { get; set; }
         public string FileName { get; set; }
         public bool Submitted { get; set; } = false;
+        public DateTime UploadDate { get; set; }
     }
 }

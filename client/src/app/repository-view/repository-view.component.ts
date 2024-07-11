@@ -13,6 +13,8 @@ import { CreateTaskComponent } from '../create-task/create-task.component';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { RemoveEntity } from '../models/removeentity';
 import { SolutionsListComponent } from '../solutions-list/solutions-list.component';
+import { SolutionService } from '../services/solution.service';
+import { AddSolution } from '../models/addsolution';
 
 @Component({
   selector: 'app-repository-view',
@@ -33,6 +35,7 @@ export class RepositoryViewComponent implements OnInit {
     private messageService: MessageService,
     private repositoryService: RepositoryService,
     private route: ActivatedRoute,
+    private solutionService: SolutionService,
     private taskService: TaskService
   ) {}
 
@@ -47,19 +50,21 @@ export class RepositoryViewComponent implements OnInit {
     this.isLoading.next(false);
   }
 
-  public async onUpload(event: any, task: Task) {
-    for (let file of event.files) {
-      console.log(file);
-      task.fileName = file.name;
-      task.filePath = file.objectURL;
-      task.file = file;
-    }
+  public async onUpload(event: any, taskId: number) {
+    this.isLoading.next(true);
+    const input: AddSolution = new AddSolution();
+    input.file = event.files[0];
+    input.taskId = taskId;
+    input.studentId = this.user.id;
 
-    console.log(task);
+    await this.solutionService.UploadFile(input);
+
     this.messageService.add({
       severity: 'info',
       summary: 'File Uploaded',
+      detail: 'Teacher will know that you submitted your solution.',
     });
+    this.isLoading.next(false);
   }
 
   public async openCreateTaskDialog() {
@@ -94,7 +99,7 @@ export class RepositoryViewComponent implements OnInit {
   }
 
   public async openSolutions(taskId: number) {
-    const dialog = this.dialogService.open(SolutionsListComponent, {
+    this.dialogService.open(SolutionsListComponent, {
       header: 'List of students',
       width: '50%',
       data: { repositoryId: this.id, taskId: taskId },

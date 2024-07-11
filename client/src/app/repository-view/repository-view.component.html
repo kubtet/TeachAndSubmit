@@ -20,9 +20,9 @@
     <div class="col-5 mb-2" *ngIf="user?.roleId === 2">
       <p-fileUpload
         url="https://www.primefaces.org/cdn/api/upload.php"
-        (onUpload)="onUpload($event, task)"
-        accept="image/*"
-        maxFileSize="1000000"
+        (onUpload)="onUpload($event, task?.id)"
+        accept="image/*,application/*"
+        maxFileSize="5000000"
       >
         <ng-template pTemplate="content">
           <ul *ngIf="task.file">

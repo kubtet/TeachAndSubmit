@@ -22,6 +22,8 @@ export class SolutionsListComponent implements OnInit {
   public async ngOnInit() {
     await this.getStudents();
     console.log(this.students);
+    console.log(this.config.data.taskId);
+    console.log(this.config.data.repositoryId);
   }
 
   public async getStudents() {

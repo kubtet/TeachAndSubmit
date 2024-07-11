@@ -32,6 +32,7 @@ export class RegisterPageComponent implements OnInit {
   public async ngOnInit() {
     this.loading.next(true);
     this.roles = await this.rolesService.getRoles();
+    this.roles.pop(); // untill admin functionality is not available
     this.maxDate = new Date(Date.now());
 
     this.formGroup = new FormGroup({

@@ -1,0 +1,27 @@
+<app-loading [isLoading]="loading | async" [isOverlay]="true"></app-loading>
+<p *ngIf="students.length === 0; else showTable">
+  There are no students related to this task
+</p>
+<ng-template #showTable>
+  <p-table [value]="students">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Student</th>
+        <th>Solution</th>
+        <th>Submitted</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-student>
+      <tr>
+        <td>{{ student?.name }} {{ student?.surname }}</td>
+        <td>{{ student?.fileName }}</td>
+        <td>
+          <i
+            class="pi"
+            [ngClass]="student?.submitted ? 'pi-check' : 'pi-times'"
+          ></i>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</ng-template>

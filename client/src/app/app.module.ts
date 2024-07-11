@@ -36,6 +36,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { CreateTaskComponent } from './create-task/create-task.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { TableModule } from 'primeng/table';
+import { SolutionsListComponent } from './solutions-list/solutions-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +58,7 @@ import { TableModule } from 'primeng/table';
     RepositoryViewComponent,
     CreateTaskComponent,
     NotificationsComponent,
+    SolutionsListComponent,
   ],
   imports: [
     BrowserModule,

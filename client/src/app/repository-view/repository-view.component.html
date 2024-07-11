@@ -9,7 +9,7 @@
 </div>
 <div class="card" *ngFor="let task of tasks">
   <div class="row">
-    <div class="col-6">
+    <div class="col-5">
       <h5>{{ task.name }}</h5>
       <p>{{ task.description }}</p>
       <div>
@@ -17,7 +17,7 @@
         <p>Due: {{ task.deadlineDate | date : "dd.MM.yyyy" }}</p>
       </div>
     </div>
-    <div class="col-5 mb-2">
+    <div class="col-5 mb-2" *ngIf="user?.roleId === 2">
       <p-fileUpload
         url="https://www.primefaces.org/cdn/api/upload.php"
         (onUpload)="onUpload($event, task)"
@@ -31,11 +31,20 @@
         </ng-template>
       </p-fileUpload>
     </div>
-    <div class="col-1" *ngIf="user?.roleId === 1">
-      <app-button
-        icon="pi pi-trash"
-        (onClick)="removeTask(task.id)"
-      ></app-button>
-    </div>
+    <ng-container *ngIf="user?.roleId === 1">
+      <div class="col-5"></div>
+      <div class="col-1">
+        <app-button
+          icon="pi pi-info"
+          (onClick)="openSolutions(task?.id)"
+        ></app-button>
+      </div>
+      <div class="col-1">
+        <app-button
+          icon="pi pi-trash"
+          (onClick)="removeTask(task?.id)"
+        ></app-button>
+      </div>
+    </ng-container>
   </div>
 </div>

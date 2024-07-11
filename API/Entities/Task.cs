@@ -15,9 +15,5 @@ namespace API.Entities
         public DateTime CreationDate { get; set; }
 
         public DateTime DeadlineDate { get; set; }
-
-        public string FileName { get; set; }
-
-        public string FilePath { get; set; }
     }
 }

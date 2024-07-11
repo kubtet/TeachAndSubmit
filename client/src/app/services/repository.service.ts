@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Repository } from '../models/repository';
 import { firstValueFrom } from 'rxjs';
@@ -7,6 +7,8 @@ import { RepoUser } from '../models/repouser';
 import { CreateRepository } from '../models/createrepository';
 import { SystemRole } from '../models/systemrole';
 import { TaskService } from './task.service';
+import { GetStudents } from '../models/getstudents';
+import { Student } from '../models/student';
 
 @Injectable({
   providedIn: 'root',
@@ -41,6 +43,20 @@ export class RepositoryService {
     );
 
     return repoUsers;
+  }
+
+  public async getRepositoryStudents(input: GetStudents) {
+    const params = new HttpParams()
+      .set('taskId', input.taskId)
+      .set('repositoryId', input.repositoryId);
+
+    const students: Student[] = await firstValueFrom(
+      this.http.get<Student[]>(environment.apiUrl + 'repositories/students', {
+        params,
+      })
+    );
+
+    return students;
   }
 
   public async getRepositoriesForUser(userId: number) {

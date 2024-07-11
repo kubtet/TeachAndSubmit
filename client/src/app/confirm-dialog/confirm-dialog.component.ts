@@ -29,11 +29,9 @@ export class ConfirmDialogComponent implements OnInit {
     switch (this.entityToBeRemoved) {
       case 1:
         await this.repositoryService.removeRepository(this.id);
-        console.log(this.id);
         break;
       case 2:
         await this.taskService.RemoveTask(this.id);
-        console.log(this.id);
         break;
       default:
         this.ref.close();
@@ -41,7 +39,6 @@ export class ConfirmDialogComponent implements OnInit {
     }
 
     await this.taskService.RemoveTask(this.id);
-    console.log(this.entityToBeRemoved);
     this.ref.close();
   }
 

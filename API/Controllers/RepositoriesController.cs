@@ -110,6 +110,33 @@ namespace API.Controllers
             return Ok(nonUserRepositories);
         }
 
+        [HttpGet("students")]
+        public async Task<ActionResult<List<StudentDto>>> GetRepositoryStudentsWithTaskSolutions([FromQuery] GetStudentsListDto input)
+        {
+            var students = await context.UsersRepositories
+                .Where(ur => ur.RepositoryId == input.RepositoryId && ur.User.RoleId == (int)SystemRole.STUDENT)
+                .Include(ur => ur.User)
+                .Select(ur => new StudentDto
+                {
+                    Id = ur.UserId,
+                    Name = ur.User.Name,
+                    Surname = ur.User.Surname,
+                    FilePath = context.Solutions
+                        .Where(s => s.TaskId == input.TaskId && s.StudentId == ur.UserId)
+                        .Select(s => s.FilePath)
+                        .FirstOrDefault(),
+                    FileName = context.Solutions
+                        .Where(s => s.TaskId == input.TaskId && s.StudentId == ur.UserId)
+                        .Select(s => s.FileName)
+                        .FirstOrDefault(),
+                    Submitted = context.Solutions
+                        .Where(s => s.TaskId == input.TaskId && s.StudentId == ur.UserId)
+                        .Select(s => s.Submitted)
+                        .FirstOrDefault()
+                }).ToListAsync();
+
+            return Ok(students);
+        }
 
         [HttpPost("create")]
         public async Task<ActionResult<Repository>> CreateRepository(CreateRepositoryDto input)

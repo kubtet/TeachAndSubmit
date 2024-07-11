@@ -12,6 +12,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { CreateTaskComponent } from '../create-task/create-task.component';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { RemoveEntity } from '../models/removeentity';
+import { SolutionsListComponent } from '../solutions-list/solutions-list.component';
 
 @Component({
   selector: 'app-repository-view',
@@ -19,7 +20,7 @@ import { RemoveEntity } from '../models/removeentity';
   styleUrls: ['./repository-view.component.scss'],
 })
 export class RepositoryViewComponent implements OnInit {
-  protected id: number | undefined;
+  protected id: number | undefined; //repositoryId
   protected isLoading = new BehaviorSubject(false);
   protected repository: Repository | undefined;
   protected tasks: Task[] = [];
@@ -44,7 +45,6 @@ export class RepositoryViewComponent implements OnInit {
     this.tasks = await this.taskService.GetTasksForRepository(this.id!);
     this.user = await firstValueFrom(this.accountService.currentUser$);
     this.isLoading.next(false);
-    console.log(this.tasks);
   }
 
   public async onUpload(event: any, task: Task) {
@@ -90,6 +90,14 @@ export class RepositoryViewComponent implements OnInit {
       this.isLoading.next(true);
       window.location.reload();
       this.isLoading.next(false);
+    });
+  }
+
+  public async openSolutions(taskId: number) {
+    const dialog = this.dialogService.open(SolutionsListComponent, {
+      header: 'List of students',
+      width: '50%',
+      data: { repositoryId: this.id, taskId: taskId },
     });
   }
 }

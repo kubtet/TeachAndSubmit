@@ -62,7 +62,7 @@ export class RepositoryViewComponent implements OnInit {
     this.messageService.add({
       severity: 'info',
       summary: 'File Uploaded',
-      detail: 'Teacher will know that you submitted your solution.',
+      detail: 'Your solution was submitted correctly.',
     });
     this.isLoading.next(false);
   }

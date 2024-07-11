@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AddSolution } from '../models/addsolution';
 import { firstValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
-
+import { saveAs } from 'file-saver';
 @Injectable({
   providedIn: 'root',
 })
@@ -19,5 +19,24 @@ export class SolutionService {
     await firstValueFrom(
       this.http.post(environment.apiUrl + 'solutions/upload', formData)
     );
+  }
+
+  public async DownloadFile(filePath: string) {
+    const params = new HttpParams().set('filePath', filePath);
+
+    this.http
+      .get(environment.apiUrl + 'solutions/download', {
+        params,
+        responseType: 'blob',
+      })
+      .subscribe(
+        (blob) => {
+          const fileName = filePath.split('\\').pop();
+          saveAs(blob, fileName);
+        },
+        (error) => {
+          console.error('Download error', error);
+        }
+      );
   }
 }

@@ -9,6 +9,8 @@
         <th>Student</th>
         <th>Solution</th>
         <th>Submitted</th>
+        <th>Upload Date</th>
+        <th></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-student>
@@ -20,6 +22,19 @@
             class="pi"
             [ngClass]="student?.submitted ? 'pi-check' : 'pi-times'"
           ></i>
+        </td>
+        <td>
+          <span *ngIf="student?.submitted">{{
+            student?.uploadDate | date : "dd.MM.yyyy"
+          }}</span>
+        </td>
+        <td>
+          <span *ngIf="student?.submitted"
+            ><app-button
+              icon="pi pi-download"
+              (onClick)="download(student?.filePath)"
+            ></app-button
+          ></span>
         </td>
       </tr>
     </ng-template>

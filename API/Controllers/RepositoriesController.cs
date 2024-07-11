@@ -132,6 +132,10 @@ namespace API.Controllers
                     Submitted = context.Solutions
                         .Where(s => s.TaskId == input.TaskId && s.StudentId == ur.UserId)
                         .Select(s => s.Submitted)
+                        .FirstOrDefault(),
+                    UploadDate = context.Solutions
+                        .Where(s => s.TaskId == input.TaskId && s.StudentId == ur.UserId)
+                        .Select(s => s.UploadDate)
                         .FirstOrDefault()
                 }).ToListAsync();
 

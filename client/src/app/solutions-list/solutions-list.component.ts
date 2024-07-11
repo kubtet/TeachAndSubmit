@@ -4,6 +4,7 @@ import { RepositoryService } from '../services/repository.service';
 import { BehaviorSubject } from 'rxjs';
 import { GetStudents } from '../models/getstudents';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { SolutionService } from '../services/solution.service';
 
 @Component({
   selector: 'app-solutions-list',
@@ -16,14 +17,12 @@ export class SolutionsListComponent implements OnInit {
 
   constructor(
     private config: DynamicDialogConfig,
-    private repositoryService: RepositoryService
+    private repositoryService: RepositoryService,
+    private solutionService: SolutionService
   ) {}
 
   public async ngOnInit() {
     await this.getStudents();
-    console.log(this.students);
-    console.log(this.config.data.taskId);
-    console.log(this.config.data.repositoryId);
   }
 
   public async getStudents() {
@@ -32,6 +31,12 @@ export class SolutionsListComponent implements OnInit {
     input.repositoryId = this.config?.data?.repositoryId;
     input.taskId = this.config?.data?.taskId;
     this.students = await this.repositoryService.getRepositoryStudents(input);
+    this.loading.next(false);
+  }
+
+  public async download(path: string) {
+    this.loading.next(true);
+    await this.solutionService.DownloadFile(path);
     this.loading.next(false);
   }
 }

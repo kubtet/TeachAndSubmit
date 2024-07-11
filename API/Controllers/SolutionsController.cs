@@ -100,5 +100,19 @@ namespace API.Controllers
 
             return Ok();
         }
+
+        [HttpGet("download")]
+        public ActionResult DownloadFile([FromQuery] string filePath)
+        {
+            if (string.IsNullOrEmpty(filePath) || !System.IO.File.Exists(filePath))
+            {
+                return NotFound();
+            }
+
+            var fileBytes = System.IO.File.ReadAllBytes(filePath);
+            var fileName = Path.GetFileName(filePath);
+
+            return File(fileBytes, "application/octet-stream", fileName);
+        }
     }
 }

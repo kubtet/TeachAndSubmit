@@ -5,4 +5,5 @@ export class Student {
   fileName: string;
   filePath: string;
   submitted: boolean;
+  uploadDate: Date;
 }

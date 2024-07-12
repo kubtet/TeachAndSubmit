@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api';
-import { ButtonIconPosition } from '../shared/models/ButtonIconPosition';
+import { Component } from '@angular/core';
 import { AccountService } from '../services/account.service';
 import { Router } from '@angular/router';
 
@@ -9,27 +7,14 @@ import { Router } from '@angular/router';
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss'],
 })
-export class NavComponent implements OnInit {
-  protected iconPosition: ButtonIconPosition = ButtonIconPosition.RIGHT;
-  protected items: MenuItem[] = [];
-
+export class NavComponent {
   constructor(
     protected accountService: AccountService,
     private router: Router
   ) {}
 
-  ngOnInit() {
-    this.items = [
-      {
-        label: 'Options',
-      },
-      {
-        label: 'Log out',
-        command: () => {
-          this.accountService.logout();
-          this.router.navigateByUrl('login');
-        },
-      },
-    ];
+  public async logout() {
+    this.accountService.logout();
+    this.router.navigateByUrl('login');
   }
 }

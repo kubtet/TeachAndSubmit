@@ -114,5 +114,15 @@ namespace API.Controllers
 
             return File(fileBytes, "application/octet-stream", fileName);
         }
+
+        [HttpGet("student")]
+        public async Task<ActionResult<Solution>> GetStudentSolutionForTask(GetSolution input)
+        {
+            var solution = await context.Solutions
+                .Where(s => s.TaskId == input.TaskId && s.StudentId == input.StudentId)
+                .FirstOrDefaultAsync();
+
+            return Ok(solution);
+        }
     }
 }

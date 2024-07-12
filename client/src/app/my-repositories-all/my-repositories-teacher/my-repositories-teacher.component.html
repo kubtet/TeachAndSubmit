@@ -9,7 +9,7 @@
   </div>
   <div class="card mb-3" *ngFor="let repo of repositories">
     <div class="row">
-      <div class="col-3">
+      <div class="col-9">
         <h1>{{ repo.subject }}</h1>
         <ng-container
           *ngIf="repo.teachers?.length === 1; else multipleTeachers"
@@ -30,7 +30,6 @@
         </ng-template>
         <p>Number of students: {{ repo.numberOfStudents }}</p>
       </div>
-      <div class="col-6"></div>
       <div class="col-3 mb-3">
         <app-button label="Open" (onClick)="openRepo(repo?.id)"></app-button>
         <p class="mt-4">Number of tasks: {{ repo?.numberOfTasks }}</p>

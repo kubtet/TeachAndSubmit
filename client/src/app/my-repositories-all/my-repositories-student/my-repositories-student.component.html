@@ -4,7 +4,7 @@
   <ul *ngFor="let repo of repositories" style="list-style-type: none">
     <div class="grid card">
       <div class="row">
-        <div class="col-3">
+        <div class="col-9">
           <li>
             <h1>{{ repo.subject }}</h1>
             <ng-container
@@ -27,7 +27,6 @@
             <p>Number of students: {{ repo.numberOfStudents }}</p>
           </li>
         </div>
-        <div class="col-6"></div>
         <div class="col-3">
           <app-button label="Open" (onClick)="openRepo(repo?.id)"></app-button>
           <p class="mt-4">Number of tasks: {{ repo?.numberOfTasks }}</p>

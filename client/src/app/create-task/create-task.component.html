@@ -4,13 +4,13 @@
     label="Enter the name of the task"
   ></app-input-text>
 </div>
-<div class="col-12">
+<div class="col-12 mt-5">
   <app-input-text
     [control]="formGroup?.controls.description"
     label="Enter the description of the task"
   ></app-input-text>
 </div>
-<div class="col-3">
+<div class="col-6 mt-5">
   <app-calendar
     [control]="formGroup?.controls.deadlineDate"
     [minDate]="minDate"

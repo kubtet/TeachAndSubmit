@@ -15,6 +15,9 @@ import { RemoveEntity } from '../models/removeentity';
 import { SolutionsListComponent } from '../solutions-list/solutions-list.component';
 import { SolutionService } from '../services/solution.service';
 import { AddSolution } from '../models/addsolution';
+import { Solution } from '../models/solution';
+import { GetSolution } from '../models/getsolution';
+import { SystemRole } from '../models/systemrole';
 
 @Component({
   selector: 'app-repository-view',
@@ -25,6 +28,7 @@ export class RepositoryViewComponent implements OnInit {
   protected id: number | undefined; //repositoryId
   protected isLoading = new BehaviorSubject(false);
   protected repository: Repository | undefined;
+  protected solution: Solution;
   protected tasks: Task[] = [];
   protected uploadedFiles: any[] = [];
   protected user: User | undefined;
@@ -71,7 +75,7 @@ export class RepositoryViewComponent implements OnInit {
     const ref = this.dialogService.open(CreateTaskComponent, {
       header: 'Create task',
       width: '50%',
-      height: '70%',
+      height: '120%',
       data: {
         repositoryId: this.id,
       },
@@ -104,5 +108,10 @@ export class RepositoryViewComponent implements OnInit {
       width: '50%',
       data: { repositoryId: this.id, taskId: taskId },
     });
+  }
+
+  public isDeadlineDateInThePast(deadlineDate: Date) {
+    const currentDate = new Date();
+    return new Date(deadlineDate) < currentDate;
   }
 }

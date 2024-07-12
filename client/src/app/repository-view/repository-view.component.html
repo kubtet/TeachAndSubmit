@@ -15,6 +15,7 @@
       <div>
         <p>Created: {{ task.creationDate | date : "dd.MM.yyyy" }}</p>
         <p>Due: {{ task.deadlineDate | date : "dd.MM.yyyy" }}</p>
+        <p style="color: red;" *ngIf="isDeadlineDateInThePast(task.deadlineDate)">Your submission is too late.</p>
       </div>
     </div>
     <div class="col-5 mb-2" *ngIf="user?.roleId === 2">

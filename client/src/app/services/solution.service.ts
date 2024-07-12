@@ -4,6 +4,8 @@ import { AddSolution } from '../models/addsolution';
 import { firstValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { saveAs } from 'file-saver';
+import { GetSolution } from '../models/getsolution';
+import { Solution } from '../models/solution';
 @Injectable({
   providedIn: 'root',
 })
@@ -38,5 +40,19 @@ export class SolutionService {
           console.error('Download error', error);
         }
       );
+  }
+
+  public async GetStudentSolutionForTask(input: GetSolution) {
+    const params = new HttpParams();
+    params.set('studentId', input.studentId);
+    params.set('taskId', input.taskId);
+
+    const solution = await firstValueFrom(
+      this.http.get<Solution>(environment.apiUrl + 'solutions/student', {
+        params,
+      })
+    );
+
+    return solution;
   }
 }
